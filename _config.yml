@@ -44,7 +44,7 @@ minima:
     github: fastai
 
 # Set this to true to get LaTeX math equation support
-use_math: true
+use_math: false
 
 # Set this to true to display the summary of your blog post under your title on the Home page.
 show_description: true
@@ -111,7 +111,7 @@ titles_from_headings:
 highlighter: rouge
 markdown: kramdown
 kramdown:
-  math_engine: mathjax
+  math_engine: katex
   input: GFM
   auto_ids: true
   hard_wrap: false
