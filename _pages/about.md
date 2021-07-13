@@ -1,11 +1,6 @@
 ---
 layout: page
-title: About Me
+title: About
 permalink: /about/
 ---
-
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
-
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+I am a theoretical physicist diving into the field of quantum computation. In this blog I consolidate some of my thoughts on the basic concepts of quantum computing and impressions of the newest research papers.
