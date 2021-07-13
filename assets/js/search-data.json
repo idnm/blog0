@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "What is quantum entanglement?",
-            "content": "Entanglement . So what is entanglement? Entanglement is what entangled states have. What are those? Take two spins. The state . begin{equation} frac1{ sqrt{2}} Big(| uparrow uparrow rangle+| downarrow downarrow rangle Big) label{bell} end{equation}is your canonical example of an entangled stated. In contrast, all the states below are unentangled begin{align} | uparrow uparrow rangle, qquad | downarrow uparrow rangle, qquad frac1{ sqrt{2}}| uparrow rangle Big( uparrow rangle-| downarrow rangle Big), qquad frac1{ sqrt{2}} Big(| uparrow rangle-| downarrow rangle Big) Big( uparrow rangle+| downarrow rangle Big) label{unen} end{align} . The difference between eqref{bell} and eqref{unen} is that all latter states are actually products of the form $| psi_1 rangle | psi_2 rangle$ while the state eqref{bell} can not be represented in such form. You can define entangled states by this property of not being factorizible into wavefunctions of consistuent spins. . A perfectly reasonable question to ask is &quot;so what&quot;? Why are entangled states special? Personally I was aware of this formal aspect of entanglement for years, but I only asked the latter pragmatic question when exposed to quantum computations. Answers one can give to this &quot;so what&quot; question are numerous and most of them very interesting. I will only consider two. .",
+            "content": "Entanglement . So what is entanglement? Entanglement is what entangled states have. What are those? Take two spins. The state . begin{equation} frac1{ sqrt{2}} Big(| uparrow uparrow rangle+| downarrow downarrow rangle Big) label{bell} end{equation}is your canonical example of an entangled stated. In contrast, all the states below are unentangled begin{align} | uparrow uparrow rangle, qquad | downarrow uparrow rangle, qquad frac1{ sqrt{2}}| uparrow rangle Big( uparrow rangle-| downarrow rangle Big), qquad frac1{ sqrt{2}} Big(| uparrow rangle-| downarrow rangle Big) Big( uparrow rangle+| downarrow rangle Big) label{unen} end{align} . The difference between eqref{bell} and eqref{unen} is that all latter states are actually products of the form $| psi_1 rangle | psi_2 rangle$ while the state eqref{bell} can not be represented in such form. You can define entangled states by this property of not being factorizible into wavefunctions of consistuent spins. . A perfectly reasonable question to ask is &quot;so what&quot;? Why are entangled states special? Personally I was aware of this formal aspect of entanglement for years, but I only asked the latter pragmatic question when exposed to quantum computations. Answers one can give to this &quot;so what&quot; question are numerous and most of them very interesting. I will only consider two. . In an entangled states the qubits are fundamentally connected . One need some qualifiers to explain this. .",
             "url": "https://idnm.github.io/blog/quantum%20concepts/2021/07/12/Entanglement.html",
             "relUrl": "/quantum%20concepts/2021/07/12/Entanglement.html",
             "date": " • Jul 12, 2021"
@@ -39,8 +39,8 @@
 
   
       ,"page1": {
-          "title": "About Me",
-          "content": "This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "title": "About",
+          "content": "I am a theoretical physicist diving into the field of quantum computation. In this blog I consolidate some of my thoughts on the basic concepts of quantum computing and impressions of the newest research papers. .",
           "url": "https://idnm.github.io/blog/about/",
           "relUrl": "/about/",
           "date": ""
