@@ -1,7 +1,7 @@
 ---
 keywords: fastai
-description: Smoothly with fastpages. With a couple of caveats.
-title: How this blog was set up?
+description: Smoothly with fastpages except a couple of caveats.
+title: How was this blog was set up?
 toc: true 
 badges: true
 comments: true
@@ -22,12 +22,23 @@ layout: notebook
         
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="https://github.com/fastai/fastpages#setup-instructions">official installation</a> worked fine for me. While customizing the blog fro my purposes several issues were not obvious</p>
-<ol>
-<li>I wanted to use number equations which are not easily supported. This <a href="https://forums.fast.ai/t/consider-setting-use-math-to-true-by-default/64276/6">comment</a> solved my problem!</li>
+<h1 id="Why-fastpages?">Why <code>fastpages</code>?<a class="anchor-link" href="#Why-fastpages?"> </a></h1><p>After deciding to start a scientific blog I was looking for an appropriate technical solution. My main requirements were</p>
+<ul>
+<li>Ease of set up.</li>
+<li>Ease of writing posts.</li>
+<li>Decent support of $\LaTeX$.</li>
+<li>Support of code snippets.</li>
+</ul>
+<p>After some search I decided to try out <a href="https://github.com/fastai/fastpages">fastpages</a>. I have a very limited understanding of the stack that <code>fastpages</code> use, so I treat it as a magic box. The magic box was easy for me to install while other bullet points are addressed all at once since <code>fastpages</code> allows to generate a post from a <code>jupyter notebook</code>. Although <code>jupyter notebook</code> is not exactly my favorite $\LaTeX$ editor it still much better than many other options and a good overall compromise. So essentially with <code>fastpages</code> you can write your posts in <code>jupyter notebook</code>, then commit to your <code>github</code> repository and the content will automatically be hosted at your domain on <a href="https://pages.github.com/">github pages</a>.</p>
+<h1 id="Caveats">Caveats<a class="anchor-link" href="#Caveats"> </a></h1><p>Following <a href="https://github.com/fastai/fastpages#setup-instructions">official installation</a> worked smoothly for me. While customizing the blog further for my purposes there were several things that did not work right of the box of took some time to find out how to change:</p>
+<h2 id="Solved">Solved<a class="anchor-link" href="#Solved"> </a></h2><ol>
+<li>I wanted to use numbered $\LaTeX$ equations with hyperlinks, which are not easily supported. This <a href="https://forums.fast.ai/t/consider-setting-use-math-to-true-by-default/64276/6">comment</a> solved my problem! </li>
 <li>You need to edit <code>_pages/about.md</code> to customize the way your "about" page is displayed.</li>
 <li>To customize the front page you need to edit <code>index.html</code>. This is literally written on the front page of your blog, but I have not noticed it for a while.</li>
-<li>Initially a lot of troubleshooting is needed to get the appearance of the blog I wanted. Commiting and waiting for the online web page to set up is slowing this down. Here is an <a href="https://github.com/fastai/fastpages/blob/master/_fastpages_docs/DEVELOPMENT.md#converting-the-pages-locally">official guide</a> on how to setup a live preview of your blog locally. One minor point that was a problem for me is that the default server  <a href="https://127.0.0.1:4000">https://127.0.0.1:4000</a> was not correct. After running <code>sudo make server</code> one of the outputs that <code>jekyll</code> produces is <code>Server address:</code> <a href="http://0.0.0.0:4000/blog/">http://0.0.0.0:4000/blog/</a> which was the correct address for the live preview of my blog.</li>
+<li>Initially a lot of troubleshooting is needed to get the appearance of the blog I wanted. Commiting and waiting for the online web page to set up is super-slow. Here is an <a href="https://github.com/fastai/fastpages/blob/master/_fastpages_docs/DEVELOPMENT.md#converting-the-pages-locally">official guide</a> on how to setup a live preview of your blog locally. One minor point that was a problem for me is that the default local server for blog preview  <a href="https://127.0.0.1:4000">https://127.0.0.1:4000</a> was not correct. After running <code>sudo make server</code> one of the outputs that <code>jekyll</code> produces is <code>Server address:</code> <a href="http://0.0.0.0:4000/blog/">http://0.0.0.0:4000/blog/</a> which was the correct address for the live preview of my blog.</li>
+</ol>
+<h2 id="Not-solved">Not solved<a class="anchor-link" href="#Not-solved"> </a></h2><ol>
+<li>On the web page the display equations of $\LaTeX$ have fluctuations in size which does not look good.</li>
 </ol>
 
 </div>
