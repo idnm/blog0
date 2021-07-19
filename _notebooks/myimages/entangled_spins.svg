@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 210 297"
+   height="297mm"
+   width="210mm"
+   sodipodi:docname="entangled_spins.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1294"
+     inkscape:window-height="704"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="0.2973261"
+     inkscape:cx="338.54062"
+     inkscape:cy="469.0896"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient6153">
+      <stop
+         id="stop6151"
+         offset="0"
+         style="stop-color:#4200ff;stop-opacity:1;" />
+    </linearGradient>
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <path
+       style="fill:none;stroke:#0000b0;stroke-width:2.76200008;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 37.243432,301.18058 c -1.038707,-31.36016 -2.100988,-63.43223 12.600233,-82.58645 8.573806,-11.17081 21.170266,-15.39947 34.281016,-22.61999 m 26.821859,-20.32133 c 16.61426,-15.6969 13.83519,-44.99045 1.03459,-62.89735 C 99.18051,94.84855 73.913301,86.8305 60.457361,71.239566 47.001421,55.648632 45.357167,32.485364 43.712923,9.3222523"
+       id="path4594"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csccssc" />
+    <path
+       id="path4602"
+       d="M 28.163638,36.049206 43.712923,9.3222523 C 54.292606,26.614174 58.250689,29.007498 64.512294,36.583744"
+       style="fill:none;stroke:#0000c6;stroke-width:1.86500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <path
+       id="path4606"
+       d="m 74.300928,30.79955 v 0"
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#a7003c;stroke-width:2.79126906;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 56.218465,295.39639 c -1.060838,-31.36016 -2.145758,-63.43223 12.8687,-82.58645 15.014457,-19.15423 46.115925,-25.74687 61.495925,-42.94132 15.37999,-17.19444 10.49463,-51.66452 -2.57871,-69.57142 M 106.94318,84.454953 C 97.139791,78.26321 87.252739,72.360964 80.38142,64.565497 66.638782,48.974563 64.505075,26.701171 62.825798,3.5380588"
+       transform="matrix(-0.97913801,0,0,1,207.54451,4.3031748)"
+       id="path4594-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssccsc" />
+    <path
+       id="path4602-3"
+       d="M 130.4801,34.568187 146.02938,7.8412336 166.82875,35.102725"
+       style="fill:none;stroke:#b9002e;stroke-width:1.86500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+</svg>
