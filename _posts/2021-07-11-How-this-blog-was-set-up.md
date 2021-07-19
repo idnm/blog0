@@ -6,7 +6,7 @@ toc: true
 badges: true
 comments: true
 categories: [fastpages]
-image: 
+image: images/logo.png
 nb_path: _notebooks/2021-07-11-How this blog was set up.ipynb
 layout: notebook
 ---
