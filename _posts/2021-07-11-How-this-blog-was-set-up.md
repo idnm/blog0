@@ -1,7 +1,7 @@
 ---
 keywords: fastai
 description: Smoothly with fastpages except a couple of caveats.
-title: How was this blog was set up?
+title: How was this blog set up?
 toc: true 
 badges: true
 comments: true
