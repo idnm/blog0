@@ -1,1 +1,1 @@
-Sitemap: https://nnemkov.quantum/blog/sitemap.xml
+Sitemap: https://nnemkov.quantum.blog/sitemap.xml
