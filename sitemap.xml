@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://idnm.github.io/blog/https://idnm.github.io/blog/fastpages/2021/07/11/How-this-blog-was-set-up.html</loc>
+<loc>https://idnm.github.io/blog/blog/fastpages/2021/07/11/How-this-blog-was-set-up.html</loc>
 <lastmod>2021-07-11T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>https://idnm.github.io/blog/https://idnm.github.io/blog/quantum%20concepts/qiskit/2021/07/12/Entanglement.html</loc>
+<loc>https://idnm.github.io/blog/blog/quantum%20concepts/qiskit/2021/07/12/Entanglement.html</loc>
 <lastmod>2021-07-12T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>https://idnm.github.io/blog/https://idnm.github.io/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html</loc>
+<loc>https://idnm.github.io/blog/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html</loc>
 <lastmod>2021-07-22T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>https://idnm.github.io/blog/https://idnm.github.io/blog/about/</loc>
+<loc>https://idnm.github.io/blog/blog/about/</loc>
 </url>
 <url>
-<loc>https://idnm.github.io/blog/https://idnm.github.io/blog/</loc>
+<loc>https://idnm.github.io/blog/blog/</loc>
 </url>
 <url>
-<loc>https://idnm.github.io/blog/https://idnm.github.io/blog/search/</loc>
+<loc>https://idnm.github.io/blog/blog/search/</loc>
 </url>
 <url>
-<loc>https://idnm.github.io/blog/https://idnm.github.io/blog/categories/</loc>
+<loc>https://idnm.github.io/blog/blog/categories/</loc>
 </url>
 </urlset>

@@ -10,16 +10,16 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Optimal compiling of unitaries reaching the theoretical lower bound" />
 <meta property="og:description" content="Optimal compiling of unitaries reaching the theoretical lower bound" />
-<link rel="canonical" href="https://idnm.github.io/blog/https://idnm.github.io/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html" />
-<meta property="og:url" content="https://idnm.github.io/blog/https://idnm.github.io/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html" />
+<link rel="canonical" href="https://idnm.github.io/blog/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html" />
+<meta property="og:url" content="https://idnm.github.io/blog/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html" />
 <meta property="og:site_name" content="Notes on &lt; Quantum Computing &gt;" />
-<meta property="og:image" content="https://idnm.github.io/blog/https://idnm.github.io/blog/images/grovercirc.png" />
+<meta property="og:image" content="https://idnm.github.io/blog/blog/images/grovercirc.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-07-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"url":"https://idnm.github.io/blog/https://idnm.github.io/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html","@type":"BlogPosting","headline":"Machine learning compilation of quantum circuits","dateModified":"2021-07-22T00:00:00-05:00","datePublished":"2021-07-22T00:00:00-05:00","image":"https://idnm.github.io/blog/https://idnm.github.io/blog/images/grovercirc.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://idnm.github.io/blog/https://idnm.github.io/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html"},"description":"Optimal compiling of unitaries reaching the theoretical lower bound","@context":"https://schema.org"}</script>
+{"url":"https://idnm.github.io/blog/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html","@type":"BlogPosting","headline":"Machine learning compilation of quantum circuits","dateModified":"2021-07-22T00:00:00-05:00","datePublished":"2021-07-22T00:00:00-05:00","image":"https://idnm.github.io/blog/blog/images/grovercirc.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://idnm.github.io/blog/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html"},"description":"Optimal compiling of unitaries reaching the theoretical lower bound","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/https://idnm.github.io/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://idnm.github.io/blog/https://idnm.github.io/blog/feed.xml" title="Notes on &lt; Quantum | Computing &gt;" /><!-- the google_analytics_id gets auto inserted from the config file -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://idnm.github.io/blog/blog/feed.xml" title="Notes on &lt; Quantum | Computing &gt;" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
 
 
@@ -34,7 +34,7 @@
 </script>
 
 
-<link rel="shortcut icon" type="image/x-icon" href="/https://idnm.github.io/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
 
 <script>
@@ -69,7 +69,7 @@ window.onload = wrap_img;
 </head>
 <body><header class="site-header">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/https://idnm.github.io/blog/">Notes on &lt; Quantum | Computing &gt;</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Notes on &lt; Quantum | Computing &gt;</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -79,7 +79,7 @@ window.onload = wrap_img;
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/https://idnm.github.io/blog/about/">About</a><a class="page-link" href="/https://idnm.github.io/blog/search/">Search</a><a class="page-link" href="/https://idnm.github.io/blog/categories/">Tags</a></div>
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -100,16 +100,16 @@ window.onload = wrap_img;
     
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
-        <a class="category-tags-link" href="https://idnm.github.io/blog/categories/#machine learning">machine learning</a>
+        <a class="category-tags-link" href="/blog/categories/#machine learning">machine learning</a>
         &nbsp;
       
-        <a class="category-tags-link" href="https://idnm.github.io/blog/categories/#compilation">compilation</a>
+        <a class="category-tags-link" href="/blog/categories/#compilation">compilation</a>
         &nbsp;
       
-        <a class="category-tags-link" href="https://idnm.github.io/blog/categories/#qiskit">qiskit</a>
+        <a class="category-tags-link" href="/blog/categories/#qiskit">qiskit</a>
         &nbsp;
       
-        <a class="category-tags-link" href="https://idnm.github.io/blog/categories/#paper review">paper review</a>
+        <a class="category-tags-link" href="/blog/categories/#paper review">paper review</a>
         
       
       </p>
@@ -121,14 +121,14 @@ window.onload = wrap_img;
           <div class="px-2">
 
     <a href="https://github.com/idnm/blog/tree/master/_notebooks/2021-07-22-Machine learning compilation of quantum circuits.ipynb" role="button" target="_blank">
-<img class="notebook-badge-image" src="/https://idnm.github.io/blog/assets/badges/github.svg" alt="View On GitHub">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           
           <div class="px-2">
     <a href="https://colab.research.google.com/github/idnm/blog/blob/master/_notebooks/2021-07-22-Machine learning compilation of quantum circuits.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/https://idnm.github.io/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
         </div>
@@ -658,20 +658,20 @@ Andrea Simonetto that uses techniques from machine learning to tackle the proble
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/https://idnm.github.io/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html" hidden></a>
+</script><a class="u-url" href="/blog/machine%20learning/compilation/qiskit/paper%20review/2021/07/22/Machine-learning-compilation-of-quantum-circuits.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
-  <data class="u-url" href="/https://idnm.github.io/blog/"></data>
+  <data class="u-url" href="/blog/"></data>
 
   <div class="wrapper">
 
     <div class="footer-col-wrapper">
       <div class="footer-col">
         <p class="feed-subscribe">
-          <a href="/https://idnm.github.io/blog/feed.xml">
+          <a href="/blog/feed.xml">
             <svg class="svg-icon orange">
-              <use xlink:href="/https://idnm.github.io/blog/assets/minima-social-icons.svg#rss"></use>
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
             </svg><span>Subscribe</span>
           </a>
         </p>

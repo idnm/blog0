@@ -1,1 +1,1 @@
-Sitemap: https://idnm.github.io/blog/https://idnm.github.io/blog/sitemap.xml
+Sitemap: https://idnm.github.io/blog/blog/sitemap.xml
