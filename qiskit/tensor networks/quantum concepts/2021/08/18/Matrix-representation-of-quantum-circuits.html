@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Matrix representation of quantum circuits - notations and gotchas | Notes on &lt; Quantum Computing &gt;</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Matrix representation of quantum circuits - notations and gotchas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A case study by building a tensor network to match qiskit conventions" />
+<meta property="og:description" content="A case study by building a tensor network to match qiskit conventions" />
+<link rel="canonical" href="https://idnm.github.io/blog/blog/qiskit/tensor%20networks/quantum%20concepts/2021/08/18/Matrix-representation-of-quantum-circuits.html" />
+<meta property="og:url" content="https://idnm.github.io/blog/blog/qiskit/tensor%20networks/quantum%20concepts/2021/08/18/Matrix-representation-of-quantum-circuits.html" />
+<meta property="og:site_name" content="Notes on &lt; Quantum Computing &gt;" />
+<meta property="og:image" content="https://idnm.github.io/blog/blog/images/upsidedown.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-18T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://idnm.github.io/blog/blog/qiskit/tensor%20networks/quantum%20concepts/2021/08/18/Matrix-representation-of-quantum-circuits.html","@type":"BlogPosting","headline":"Matrix representation of quantum circuits - notations and gotchas","dateModified":"2021-08-18T00:00:00-05:00","datePublished":"2021-08-18T00:00:00-05:00","image":"https://idnm.github.io/blog/blog/images/upsidedown.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://idnm.github.io/blog/blog/qiskit/tensor%20networks/quantum%20concepts/2021/08/18/Matrix-representation-of-quantum-circuits.html"},"description":"A case study by building a tensor network to match qiskit conventions","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://idnm.github.io/blog/blog/feed.xml" title="Notes on &lt; Quantum | Computing &gt;" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1154MLY31V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1154MLY31V');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+<meta name="google-site-verification" content="PavVqGD_DmVWpwhYbxaxic6hZ-SgRkZIu6MKjzrGJC8" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Notes on &lt; Quantum | Computing &gt;</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Matrix representation of quantum circuits - notations and gotchas</h1><p class="page-description">A case study by building a tensor network to match qiskit conventions</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-08-18T00:00:00-05:00" itemprop="datePublished">
+        Aug 18, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      14 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#qiskit">qiskit</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#tensor networks">tensor networks</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#quantum concepts">quantum concepts</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/idnm/blog/tree/master/_notebooks/2021-08-18-Matrix representation of quantum circuits.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/idnm/blog/blob/master/_notebooks/2021-08-18-Matrix representation of quantum circuits.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Intro">Intro </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Defining-the-problem">Defining the problem </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#States:-vertical-ordering">States: vertical ordering </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Single-qubit-states">Single qubit states </a></li>
+<li class="toc-entry toc-h2"><a href="#Multiple-qubit-states">Multiple qubit states </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Operators:-horizontal-ordering">Operators: horizontal ordering </a></li>
+<li class="toc-entry toc-h1"><a href="#Paper-and-pencil-computation">Paper-and-pencil computation </a></li>
+<li class="toc-entry toc-h1"><a href="#Implementation-with-tensornetworks">Implementation with tensornetworks </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#An-aside-about-reshaping">An aside about reshaping </a></li>
+<li class="toc-entry toc-h2"><a href="#Tensor-product-ordering">Tensor product ordering </a></li>
+<li class="toc-entry toc-h2"><a href="#Circuit-from-tensor-network">Circuit from tensor network </a></li>
+<li class="toc-entry toc-h2"><a href="#A-better-way">A better way </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-08-18-Matrix representation of quantum circuits.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Intro">
+<a class="anchor" href="#Intro" aria-hidden="true"><span class="octicon octicon-link"></span></a>Intro<a class="anchor-link" href="#Intro"> </a>
+</h1>
+<p>Usually, for experimenting with quantum circuits I use <code>qiskit</code>. As any higher level environment it is very convenient for common tasks, but may turn out too inflexible for unusual use cases. A somewhat opposite approach is to use much lower level tools to gain in flexibility at the expense of convenience. Currently I want to use Google's <code>tensornetwork</code> <a href="https://tensornetwork.readthedocs.io/en/latest/">package</a> for simulations and training of quantum circuits, but this requires building many things that are for free in <code>qiskit</code> from scratch. It is also necessary to become explicit about conventions for matrix representation of quantum circuits. As long as you stay within a single framework this may not be an issue. However for debugging purposes as well as for comparison between different frameworks this may become unavoidable. Thus, I always anticipated, that a day will come when I need to face my fears and order all terms in a tensor product by hands. Now it seems I'm past the difficult part and I'm better writing this down in case I would need to do something similar in the future.</p>
+<h2 id="Defining-the-problem">
+<a class="anchor" href="#Defining-the-problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining the problem<a class="anchor-link" href="#Defining-the-problem"> </a>
+</h2>
+<p>OK, so what is the problem? Consider the following simple circuit built with <code>qiskit</code>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span><span class="p">,</span> <span class="n">Statevector</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">'mpl'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is not hard or ambiguous to interpret what this circuit does by inspecting the diagram. Say the input state is $q_0=|0\rangle$, $q_1=|1\rangle$. After $X$ acts on $q_0$ it becomes $q_0\to X |0\rangle=|1\rangle$. Similarly, $q_1$ after $Y$ becomes $q_1\to Y|1\rangle=-i |0\rangle$. Since now $q_0$ is "on" the CNOT gate switches the state of $q_1$ further to $q_0 \to -i|1\rangle$. So the end result is that $q_0=|0\rangle, q_1=|1\rangle$ is transformed to $q_0=|1\rangle, q_1=-i|1\rangle$. Or perhaps a picture says it better</p>
+<p><img src="/blog/images/copied_from_nb/myimages/xycnot01.png" alt=""></p>
+<p>Similarly, we can work out what the circuit does for other computational basis states which by linearity fully fixes the action of the circuit. Although quite explicit, this is a clumsy description. This is why the matrix notation is usually used. And indeed, we can obtain the matrix corresponding to our quantum circuit quite easily in <code>qiskit</code>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">U_qs</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="n">U_qs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0.+0.j, 0.+0.j, 0.+0.j, 0.-1.j],
+       [0.+1.j, 0.+0.j, 0.+0.j, 0.+0.j],
+       [0.+0.j, 0.+1.j, 0.+0.j, 0.+0.j],
+       [0.+0.j, 0.+0.j, 0.-1.j, 0.+0.j]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is important to realize that a number of conventions must be chosen before such explicit matrix representation can be written down. In particular, I will emphasize two points I tripped over while studying this: ordering of the qubit states in the tensor product or "vertical ordering" and ordering of operators or "horizontal ordering".</p>
+<p><figure>
+  
+    <img class="docimage" src="/blog/images/copied_from_nb/myimages/upsidedown.jpg" alt="Drawing">
+    
+    
+</figure>
+</p>
+<p>In the rest of the post I will clarify what are the conventions used in <code>qiskit</code> and how to reproduce the circuit with the <code>tensornetwork</code> library.</p>
+<h1 id="States:-vertical-ordering">
+<a class="anchor" href="#States:-vertical-ordering" aria-hidden="true"><span class="octicon octicon-link"></span></a>States: vertical ordering<a class="anchor-link" href="#States:-vertical-ordering"> </a>
+</h1>
+<h2 id="Single-qubit-states">
+<a class="anchor" href="#Single-qubit-states" aria-hidden="true"><span class="octicon octicon-link"></span></a>Single qubit states<a class="anchor-link" href="#Single-qubit-states"> </a>
+</h2>
+<p>First we need to give matrix representations to two basis states of a single qubit. Here I think it is quite uncontroversial to choose
+\begin{align}
+|0\rangle = \begin{pmatrix}1\\0\end{pmatrix},\qquad |1\rangle = \begin{pmatrix}0\\1\end{pmatrix} \label{kets}
+\end{align}</p>
+<p>These are the "ket" vectors. Their "bra" counterparts are
+\begin{align}
+\langle 0| = \begin{pmatrix}1 &amp; 0\end{pmatrix}, \qquad \langle 1| = \begin{pmatrix}0 &amp; 1\end{pmatrix} \label{bras}
+\end{align}</p>
+<p>With these, the following operators can be computed
+\begin{align}
+|0\rangle\langle 0| = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 0\end{pmatrix},\qquad |0\rangle\langle 1| = \begin{pmatrix}0 &amp; 1 \\ 0 &amp; 0\end{pmatrix} \nonumber\\ |1\rangle\langle 0| = \begin{pmatrix}0 &amp; 0 \\ 1 &amp; 0\end{pmatrix},\qquad |1\rangle\langle 1| = \begin{pmatrix}0 &amp; 0 \\ 0 &amp; 1\end{pmatrix} \label{ketbras}
+\end{align}</p>
+<h2 id="Multiple-qubit-states">
+<a class="anchor" href="#Multiple-qubit-states" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multiple qubit states<a class="anchor-link" href="#Multiple-qubit-states"> </a>
+</h2>
+<p>When there is more than a single qubit things become a bit more interesting and potentially confusing. For example, the combined Hilbert space of two qubits $\mathcal{H}_2$ is a tensor product of single-qubit Hilbert spaces $\mathcal{H}_2 = \mathcal{H}_1 \otimes \mathcal{H}_1$ but we need to decide which qubit goes first and which goes second. In <code>qiskit</code> a convention is adopted that additional qubits join from the <em>left</em>, i.e. when we have two qubits as here</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc01</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc01</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">'mpl'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAAB7CAYAAACGl/UnAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjQuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8rg+JYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD3ElEQVR4nO3cTyj7cRzH8dfmJ5yUVphFZF/ybSO7rdiJ5qoURdGKJBf3Oe4gBxdHVxfLUW4s/0qOTmphVhJHpV18frfVmt/PNz/b9zW/16N28Bl93/Xc5/vl4OMxxhgIHa/bA8jHFIaUwpBSGFIKQ0phSCkMKYUhpTCkFIaUwpBSGFIKQ0phSCkMKYUhpTCkFIaUwpBSGFIKQ0phSCkMKYUhpTCkFIaUwpBSGFIKQ0phSCkMKYUhpTCkFIaUwpBSGFIKQ4o6zPv7OzY3NxEMBtHY2IjBwUFkMhn09fVhcXHR7fEq6pfbA/xNIpHA/v4+kskkIpEIzs/PMTMzg+fnZ6ytrbk9XmUZUru7uwaAOT4+LlmfnJw0AMzl5aVLk1UH7a0slUohHo8jFouVrPf29qK+vh7hcBgAcHd3h1gsBsuyEAqFcHJy4sa438/tT8ZHHh4eDACzs7NT9t709LQZGhoqfj0+Pm62t7eNMcacnZ0Zv99vCoXCp9cA4MrLKcodk8/nAQBtbW0l629vb8hkMhgeHgYAvLy84PT0FIlEAgAQjUbh9/txdHRU3YErgDKMz+cDANzc3JSsb2xs4PHxEZFIBACQy+XQ2tqKhoaG4vd0d3fj/v7+02sYY1x5OUX5W1lPTw/C4TBSqRRaWlrQ0dGBdDqNg4MDACiG+ckod4zX68Xe3h5s28by8jIWFhbg8/mwsrKCurq64oO/s7MTT09PKBQKxZ+9vb1FV1eXW6N/H8dPIwKzs7MmFAqVrI2NjZU8/Nvb2x09/NnVVJj+/n4zPz9fspbNZs3IyIgJBoPGtu2yv3tqlceY2jhI7vX1Fc3Nzdja2sLq6qrb41RczYT531A+/EVhaCkMKYUhpTCkFIaUwpBSGFIKQ0phSCkMKYUhpTCkFIaUwpBSGFIKQ0phSCkMKYUhpTCkFIaUwpBSGFIKQ0phSCkMKYUhpTCkFIaUwpBSGFLUYXTIDykd8kNIh/yQcnrIz/r6OizLgtfrRTqddmPUiqAMk8/ncX19jampqbL3crkcbNsuHlMSj8dxeHiI0dHRao9ZUZTPmM8O+ZmYmCiuRaPRL13D4/F8fcB/YBz+kzjljnF6yM9PRrljqnHIj9NPrlsod4zTQ35+MsodAwCWZZUdCDc3N4eBgQE0NTW5NFX1UO6YP7m6uiq7jSWTSQQCAVxcXGBpaQmBQADZbNalCb9PzZwlo0N+hEJN3cr+JwpDSmFIKQwphSGlMKQUhpTCkFIYUgpDSmFIKQwphSGlMKQUhpTCkFIYUgpDSmFIKQwphSGlMKQUhpTCkFIYUgpDSmFI/Qbm7Y7HugKDCAAAAABJRU5ErkJggg==%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The state of the system is $|q_1\rangle\otimes |q_0\rangle$ (this is of course only true literally for <a href="https://idnm.github.io/blog/quantum%20concepts/qiskit/2021/07/12/Entanglement.html">non-entangled states</a> but we can define everything only on the computational basis states ). OK, but how do we translate this into the matrix representation? The states in the tensor product of vector spaces can be represented by the <a href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a> which is not symmetric with respect to permutation arguments. Best way to explain how Kronecker product works is, as usual, through examples:</p>
+\begin{align}
+\begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} a \\ b \\ 0 \\ 0 \end{pmatrix},\qquad \begin{pmatrix} 0 \\ 1 \end{pmatrix} \otimes \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 0\\ 0\\ a \\ b \end{pmatrix}
+\end{align}<p>Result for generic left vector can be obtained by linearity
+\begin{align}
+\begin{pmatrix} x \\ y \end{pmatrix} \otimes \begin{pmatrix} a \\ b \end{pmatrix} = x \begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} a \\ b\end{pmatrix} +y\begin{pmatrix} 0 \\ 1 \end{pmatrix} \otimes \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} x a\\ x b\\ y a \\ y b \end{pmatrix}  = \begin{pmatrix} x \begin{pmatrix} a\\ b\end{pmatrix} \\ y  \begin{pmatrix} a \\  b\end{pmatrix} \end{pmatrix}
+\end{align}</p>
+<p>The last notation here is a bit informal but it shows what happens. One just substitutes the right vector into all elements of the left vector, multiplied by the corresponding components of the left vector. The Kronecker product is defined in the same way for matrices of arbitrary size, not just for two vectors.</p>
+<p>So, now we can compute matrix representations of states in the computation basis of two-qubit system</p>
+\begin{align}
+|00\rangle = \begin{pmatrix}1\\0 \end{pmatrix} \otimes \begin{pmatrix}1\\0 \end{pmatrix} = \begin{pmatrix}1\\0\\0\\0\end{pmatrix},\quad |01\rangle = \begin{pmatrix}1\\0 \end{pmatrix} \otimes \begin{pmatrix}0\\1 \end{pmatrix} = \begin{pmatrix}0\\1\\0\\0\end{pmatrix} \label{01}\\
+|10\rangle = \begin{pmatrix}0\\1\end{pmatrix} \otimes \begin{pmatrix}1\\0 \end{pmatrix} = \begin{pmatrix}0\\0\\1\\0\end{pmatrix},\quad |11\rangle = \begin{pmatrix}0\\1\end{pmatrix} \otimes \begin{pmatrix}0\\1 \end{pmatrix} = \begin{pmatrix}0\\0\\0\\1\end{pmatrix}
+\end{align}<p>There is a useful relation between the index of the non-zero element $n$ in the four-dimensional representation and the computational basis bitstring $q_1q_0$, namely $n=2q_1+q_0$. I.e. the bitstring $q_1q_0$ is the binary representation of the index $n$. This extends to arbitrary number of qubits, for example since $101$ is $5$ in binary representation it follows
+\begin{align}
+|101\rangle = \begin{pmatrix}0\\0\\0\\0\\0\\1\\0\\0 \end{pmatrix} \label{101}
+\end{align}
+(try to obtain this from the two tensor products!)</p>
+<p>Don't believe me? OK, let's check! In <code>qiskit</code> there is a convenient function to construct a vector representation from a bit string which we will take advantage of. First start with a two-qubit example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s01</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">'01'</span><span class="p">)</span>
+<span class="n">s01</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.+0.j, 1.+0.j, 0.+0.j, 0.+0.j])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Comparing to \eqref{01} we find agreement. Similarly,</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s101</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">'101'</span><span class="p">)</span>
+<span class="n">s101</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j, 1.+0.j, 0.+0.j, 0.+0.j])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Again, this is in agreement with \eqref{101}.</p>
+<p>However, I am not sure that this relation is sufficient to justify the ordering of the tensor products. To me it is much more natural to read the circuit from top to bottom and construct the Hilbert spaces accordingly, say $\mathcal{H}_0\otimes \mathcal{H}_1 \otimes \mathcal{H}_2 \dots$ instead of $\cdots \mathcal{H}_2\otimes \mathcal{H}_1\otimes \mathcal{H}_0$. Later I will change the ordering of the tensor product to my liking, but for now we stick with the <code>qiskit</code> one. Now, with conventions for states in place we can proceed to operators.</p>
+<h1 id="Operators:-horizontal-ordering">
+<a class="anchor" href="#Operators:-horizontal-ordering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Operators: horizontal ordering<a class="anchor-link" href="#Operators:-horizontal-ordering"> </a>
+</h1>
+<p>One can say that convention for states representation and ordering of tensor products is a "vertical" convention. There is also a "horizontal" convention which might be potentially confusing. Consider the following circuit</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc123</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc123</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc123</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc123</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc123</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">'mpl'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM4AAABOCAYAAABorykcAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjQuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8rg+JYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAG2ElEQVR4nO3bfUzUdQDH8c9xd0AYKIjCDgx0gKVYYyYZajJxPmWAMEuwP2jOB9S0wFhpUuJTQ524SdTEYvkABfMJUwoxmIVa2HzWqPQwFVAGPkBmAtcfzlPk5O6+Pnx/v/i8Nje883bvsX247+/wNCaTyQQisouD7AAiNeJwiARwOEQCOBwiARwOkQAOh0gAh0MkgMMhEsDhEAngcIgEcDhEAjgcIgEcDpEADodIAIdDJIDDIRLA4RAJ4HCIBHA4RAI4HCIBHA6RAA6HSACHQySAwyESwOEQCeBwiARwOEQCdLIDZPltL3D9kpzndu0J9B0h9lhZ3WpsBh6uuyOddjjXLwFXzsuusJ8au9XYbA2PakQCOBwiARwOkYBOe41ji+SscJyq2g+tVg8HBy283XsjPmIBhr8wUXZah9TYrbZmDseKySMXYvLID9HS0ozt5WuxfHM8AnxC4OMZIDutQ2rsVlMzj2o20mp1GPvSVLS0NuPPi4dl59hMjd1qaOZwbHSr+V/sLM8CAPh6BkmusZ0au9XQzKOaFZtLliK/bCVu3LwOrVaPpInZ6GN4HgBwoe4PLN34BtbM3g+9zhHflK7A3zevI2F0muTqjruXbYrHiJB4DO43HgDwUU40Xnt5Jl7sO0pmcofNu39ejz2HNpj/bXX9GQzoPQwfxG+S0spXHCviIxZg2+IrKPi4DqHPjsORP34w3+fjGYChA2KRt3c5quvPovRwHuIjFkisvauj7sSoDOR8txA3bjZi37Et6OLcVfpogI6bx4ZOwarEUqxKLMWCyXlwduyCt8YsldaqyOFs3boVwcHBcHJyQlBQELKzs5GQkAB/f39pTa4u7kiamI2Dp79F+fHt5ttfD38PB07txLJNcUiMzICjzklaoyWWut2f7okJQ+cic/scbC5ZghmRqyVXtvWg7zUAtLa2YnnuZEwZuxzeHv5yAqHA4RQVFSE2NhYGgwH5+flYtGgR0tPTUVJSIjsNbi4eiB2WhC+K5qO1tRUAoNPqMaDPK2i80YDg3kMlF1pmqXv0oAScv1yJ6CFz4ObiIbmwPUvNALCheBF6ew/AkOBoeXFQ4HBSU1Ph7++PXbt2ITIyEnFxcSguLkZtba3sNADAhGFzUX+tGsWHvgIAGGtO4ITxJ4QEjMSug+sk1z3Y/d0AYOgeoMi3eu+4v/nX30twqPJ7TH01XXKZwt4caGpqQkVFBZKTk6HT3U3z8/NDWFgYjEbjE+1ZlVja7rYuzm7YklYP4PaxYc2WGXh7QiZ8PYMwNzMMYf2j4O7q9UQ772etW4msNddfq8HabbOxbMpu6HWOT7iuPUW94jQ0NMBkMsHb27vdfZZus0Sj0dj0p6ys9KF7C/dnIdBnIIJ8B8LF2RUJoxfj0x3vWH1cWVmpzZ2Po1uE7OaNexaj6Z+rWPF1ApKzwpGcFY6MgumPtNseinrFcXd3h0ajQU1NTbv7LN0mW9SQWW3+PiQ4WvrZ2x4pk3JkJ9hsTkwm5sRkys4w05hMJpPsiHuFhoairq4OlZWV5uNaVVUVAgMDYTAYHtlxrSJP3mdEuvkCL04Se6ysbjU2Aw/X3RFFHdUAIC0tDUajEePGjUNhYSFyc3MxatQoeHnJvW4gupfihjNmzBgUFBTgwoULiI2NRWpqKlJSUhARESE7jchMUdc4d8TExCAmJqbNbfv27ZNU01bd1YtY+OV4VNWeROGSRmi1ivwWtnPq3EF8tuNdaDQO6NtrEBIV9ktPS87WHEdGwTQ4OGhh6B6Aea9/YfdF/OOiuFccpXNz8UD6tBI898xg2Sl28ermhxXT9yJj1o+40ngJZ6uPyU6yqlePvlgzuxyrZ97+oVl5vkJy0V3q+HGpII56ZzjqnWVn2M3D7e7b+VqH2x8WUzqdVm/+Wq9zQo+uvSTWtKWa4eTk5MhO+F84c/EorjZdhp9XP9kpNik/sQNf7p4PH89AuHXpLjvHjEe1TuTa3/VYu202kieul51is7D+kVg37zg8u/niwMmdsnPMOJxOoqWlGZ/kvolp41e2ObYp2b/NN81fuzi5wUn/lMSatjgcOzW33ELK5yNxpvoI3s8ejVPnDspOsknZ0XxU/vUL1n2bguSscJw07pedZFXF6SIkZQ1HUtZwNDTWYmCQ/M8M3aGaaxyl0Gn1SJ++R3aG3UaExGFESJzsDLuEBUchLDhKdoZFfMUhEsDhEAnotEc1157qfG5Z3WpsfpzPrbj/HU2kBjyqEQngcIgEcDhEAjgcIgEcDpEADodIAIdDJIDDIRLA4RAJ4HCIBHA4RAI4HCIBHA6RAA6HSACHQySAwyESwOEQCeBwiAT8B34HTPuucBcAAAAAAElFTkSuQmCC%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here, the operator $R_x$ is appplied first, the operator $R_y$ second and $R_z$ last. So in mathematical notation the circuit corresponds to $R_z R_y R_x$ and <em>not</em> to $R_x R_y R_z$. I think that the circuit notation is actually better. We think and write from left to right, this is also a direction that time flows on paper. When another thing happens, we write it to the right and it would be convenient to apply the corresponding operator also to the right. I heard real mathematicians complain about that issue, but I guess we are stuck with it for now.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Paper-and-pencil-computation">
+<a class="anchor" href="#Paper-and-pencil-computation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paper-and-pencil computation<a class="anchor-link" href="#Paper-and-pencil-computation"> </a>
+</h1>
+<p>With the set up in place we can compute the circuit of interest by hands. For convenience I plot it here once again:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">'mpl'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OK, so what is the unitary matrix corresponding to this circuit? It is 
+\begin{align}
+U = CNOT_{01} \cdot (Y\otimes X)
+\end{align}
+Here
+\begin{multline}
+CNOT_{01} = \mathbb{1}\otimes |0\rangle\langle 0|+X\otimes |1\rangle\langle 1|=\\\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}\otimes \begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}+\begin{pmatrix}0&amp;1\\1&amp;0\end{pmatrix}\otimes \begin{pmatrix}0&amp;0\\0&amp;1\end{pmatrix}=\begin{pmatrix}1&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;1\\0&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;0\end{pmatrix}
+\end{multline}
+and
+\begin{align}
+Y\otimes X = \begin{pmatrix} 0&amp; -i\\i&amp;0\end{pmatrix} \otimes \begin{pmatrix} 0&amp; 1\\1&amp;0\end{pmatrix}=\begin{pmatrix}0&amp;0&amp;0&amp;-i\\0&amp;0&amp;-i&amp;0\\0&amp;i&amp;0&amp;0\\i&amp;0&amp;0&amp;0\end{pmatrix}
+\end{align}
+Multiplying them together gives
+\begin{align}
+U = \begin{pmatrix}0 &amp; 0 &amp; 0 &amp; -i \\ i&amp;0&amp;0&amp;0 \\ 0 &amp; i &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -i &amp; 0\end{pmatrix}
+\end{align}
+Alright, so this is indeed the matrix that <code>qiskit</code> computes:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">U_qs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0.+0.j, 0.+0.j, 0.+0.j, 0.-1.j],
+       [0.+1.j, 0.+0.j, 0.+0.j, 0.+0.j],
+       [0.+0.j, 0.+1.j, 0.+0.j, 0.+0.j],
+       [0.+0.j, 0.+0.j, 0.-1.j, 0.+0.j]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now also check that that the states evolve as we expected. For example recall that we computed that our quantum circuit maps $q_0 =|0\rangle, q_1 =|1\rangle$ to $q_0 =|1\rangle, q_1 =|1\rangle$ with an overall phase $-i$. Agreement with  <code>qiskit</code> can be checked as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">qs_state</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">'10'</span><span class="p">)</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">data</span> 
+<span class="n">our_state</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s1">'11'</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">qs_state</span><span class="p">,</span> <span class="n">our_state</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Implementation-with-tensornetworks">
+<a class="anchor" href="#Implementation-with-tensornetworks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementation with <code>tensornetworks</code><a class="anchor-link" href="#Implementation-with-tensornetworks"> </a>
+</h1>
+<p>I will not give a proper introduction to tensor networks but just make some digressions I think should be helpful as we go along.</p>
+<p>First thing we will need are the matrices defining $X, Y$ and $CNOT$ gates. Let us introduce them.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">CNOT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="An-aside-about-reshaping">
+<a class="anchor" href="#An-aside-about-reshaping" aria-hidden="true"><span class="octicon octicon-link"></span></a>An aside about reshaping<a class="anchor-link" href="#An-aside-about-reshaping"> </a>
+</h2>
+<p>Note that as usually written, $CNOT$ is a $4\times4$ matrix. Since as a quantum gate it acts on two qubits, so it should rather be a four-legged tensor. This is the purpose of the reshaping operation. At first the reshaping might be a bit tricky, so let me illustrate it with an example. Introduce two $4\times4$ matrices and define their product:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">AB</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now define the corresponding four-legged tensors.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensornetwork</span> <span class="k">as</span> <span class="nn">tn</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By contracting the legs (or "edges" in terminology of <code>tensornetworks</code>) appropriately, we can reproduce the matrix multiplication. First the code:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">^</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ab</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">contractors</span><span class="o">.</span><span class="n">greedy</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">output_edge_order</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span><span class="o">.</span><span class="n">tensor</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can check that the contraction performed in this way exactly reproduces the matrix multiplication of original $4\times4$ matrices:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">AB</span><span class="p">,</span> <span class="n">ab</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This can be interpreted graphically as follows. First, the reshaping procedure can be thought of as splitting each of two four-dimensional legs of the original matrix into two two-dimensional ones</p>
+<p><img src="/blog/images/copied_from_nb/myimages/abtensors.jpg" alt=""></p>
+<p>The labels on the legs have nothing to do with qubit states, these are just indices of edges as assigned by <code>tn.Node</code> operation on our matrices. The matrix multiplication of the original matrices in terms of four-legged tensors then can be drawn as follows</p>
+<p><img src="/blog/images/copied_from_nb/myimages/abtensorproduct.jpg" alt=""></p>
+<p>The index arrangements in the last part explain why we connected the edges in our code the way we did. This is something to watch out for. For example, connecting edges of two identity tensors in the wrong way may produce a $SWAP$ gate.</p>
+<h2 id="Tensor-product-ordering">
+<a class="anchor" href="#Tensor-product-ordering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tensor product ordering<a class="anchor-link" href="#Tensor-product-ordering"> </a>
+</h2>
+<p>The matrix representation of a tensor diagram like this</p>
+<p><img src="/blog/images/copied_from_nb/myimages/kroneckertensor.jpg" alt=""></p>
+<p>also comes with a convention for the ordering of tensor products. In <code>tensornetwork</code> as well as in my opinion it is natural to order top-down, i.e. the above diagram is $U\otimes \mathbb{1}$ instead of $\mathbb{1}\otimes U$ as is adopted in <code>qiskit</code>.</p>
+<h2 id="Circuit-from-tensor-network">
+<a class="anchor" href="#Circuit-from-tensor-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Circuit from tensor network<a class="anchor-link" href="#Circuit-from-tensor-network"> </a>
+</h2>
+<p>Alright, not we are in a position to reproduce the circuit unitary from the tensor network with nodes <code>x</code>, <code>y</code> and <code>cnot</code>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make tensors from matrices</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cnot</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">tn</span><span class="o">.</span><span class="n">Node</span><span class="p">,</span> <span class="p">[</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">CNOT</span><span class="p">]))</span>
+
+<span class="c1"># Connect edges properly</span>
+<span class="n">cnot</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">^</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cnot</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">^</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Perform the contraction ~ matrix multiplication</span>
+<span class="n">U_tn</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">contractors</span><span class="o">.</span><span class="n">greedy</span><span class="p">([</span><span class="n">cnot</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">output_edge_order</span><span class="o">=</span><span class="p">[</span><span class="n">cnot</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cnot</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">tensor</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This way of contracting the edges corresponds to the following diagram:</p>
+<p><img src="/blog/images/copied_from_nb/myimages/cnotxy.jpg" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that this is basically the original circuit with both the vertical and the horizontal directions reversed. The horizontal reversal is due to mathematical vs circuit notation (circuit is better!) and the vertical reversal is due to the mismatch between <code>qiskit</code> and <code>tensornetwork</code> ordering of tensor product (<code>tensornetwork</code>'s is better!). We can check that the unitary we obtain from this tensor network agrees with <code>qiskit</code>'s</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">U_tn</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">U_qs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="A-better-way">
+<a class="anchor" href="#A-better-way" aria-hidden="true"><span class="octicon octicon-link"></span></a>A better way<a class="anchor-link" href="#A-better-way"> </a>
+</h2>
+<p>I find all this misalignment very inconvenient and hard to debug. Ideally I want to look at the quantum circuit and construct the corresponding tensor network just as I read a text: from left to right and from top to bottom. Here I propose a solution which seems much more satisfactory to me. We will deal with horizontal reversal by first defining edges and then applying gates to them. This way we can read the circuit from left to right and simply add new gates, just as in <code>qiskit</code>. I will not try to revert the vertical direction directly, because I find it hard to think upside down. Instead, for comparison with <code>qiskit</code> I will use a built-in <code>reverse_bits</code> method.</p>
+<p>So let's start by defining a function that applies a given gate to the collection of qubits (this is a slight modification of an <a href="https://tensornetwork.readthedocs.io/en/latest/quantum_circuit.html">example</a> from <code>tensornetwork</code> docs) :</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">gate_tensor</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
+    
+    <span class="n">gate</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">gate_tensor</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">gate</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">),</span> <span class="s1">'Gate size does not match positions provided.'</span>
+    
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">positions</span><span class="p">):</span>
+        <span class="c1"># Connect RIGHT legs of the gate to the active qubits</span>
+        <span class="n">gate</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)]</span> <span class="o">^</span> <span class="n">qubits</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> 
+        <span class="c1"># Reassing active qubits to the corresponding LEFT legs of the gate </span>
+        <span class="n">qubits</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">gate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Importantly, here, in contrast to the official docs, we append the gate from the <em>left</em>, so that a sequence of application of some $G_1$ followed by $G_2$ is equivalent to the application of $G_2\cdot G_1$. Now there is one more subtlety. Previously we used matrix representation of $CNOT$ assuming that the uppermost qubit comes last in the tensor product. Now that we decided to turn this convention upside down our matrix representation of $CNOT$ must be $CNOT =|0\rangle\langle 0|\otimes \mathbb{1}+|1\rangle\langle 1|\otimes X$ or explicitly</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CNOT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With that we are ready to reconstruct our original circuit in a convenient way:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The context manager  `NodeCollection` is a bit of a magic trick</span>
+<span class="c1"># which keeps track of all tensors in the network automatically.</span>
+
+<span class="n">all_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="n">tn</span><span class="o">.</span><span class="n">NodeCollection</span><span class="p">(</span><span class="n">all_nodes</span><span class="p">):</span> 
+    <span class="c1"># I do not know how to create 'abstract' edges in `tensornetworks`.</span>
+    <span class="c1"># Instead, I create an identity tensor and use its edges to apply new gates to.</span>
+    <span class="n">id0</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">qubits0</span> <span class="o">=</span> <span class="n">id0</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">id0</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">CNOT</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let us check!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">U_tn</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">contractors</span><span class="o">.</span><span class="n">greedy</span><span class="p">(</span><span class="n">all_nodes</span><span class="p">,</span> <span class="n">output_edge_order</span><span class="o">=</span><span class="n">qubits</span><span class="o">+</span><span class="n">qubits0</span><span class="p">)</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">U_reversed_qs</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">reverse_bits</span><span class="p">())</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">U_tn</span><span class="p">,</span> <span class="n">U_reversed_qs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Wohoo, it worked! If that looked simple to you I'm happy. It took me several hours of debugging to finally match the two matrices. Just to make sure, let me conclude with a more complicated example.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">'mpl'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATMAAACoCAYAAACMjglqAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjQuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8rg+JYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAR+UlEQVR4nO3df3BV5Z3H8fc5NyEJTTTEWNDwM5CkELnZgl2Fdk1QylClI9OFIG0zGDMlkHRmrYKy49YZFifrIrZs7W5lO6t0rYQtsbjUDbZQSPyB0qUCFnENkECaGvmhAZKKkNxz9o9rg5GQ3BtvOCdPPq+ZM+E+99znfHM4+eQ557n3xHJd10VEZICzvS5ARCQWFGYiYgSFmYgYQWEmIkZQmImIERRmImIEhZmIGEFhJiJGUJiJiBEUZiJiBIWZiBhBYSYiRlCYiYgRFGYiYgSFmYgYQWEmIkZQmImIERRmImIEhZmIGEFhJiJGUJiJiBEUZiJiBIWZiBhBYSYiRlCYiYgRFGYiYoQ4rwvwu/vfOcj+1lZPtp2XksLjOZM82bbIQKMw68X+1lZeavnA6zJEpBc6zRQRIyjMRMQICjMRMYLCTESMoDATESMozETECAozETGCwkxEjKA3zUqnlj/D3mPQ9hEkJ8KUsZA61OuqRCLj65GZ4zisWbOGrKwsEhMTycvLo7a2lpycHBYvXux1ed1y29tpX/JdQut+2qU9tPl52r+9CLetzaPKLq8jBP+1G/7xediyF3a+Hf668nmo+h2EHK8rFOmdr8OspKSEVatWUVpaytatWyksLGThwoXU19czdepUr8vrlhUfT9yK5TgvVOPs3QeA29CA89TPCDywDCs52dsCu1H5Orx2GNyPH3d+deGVQ7Dpd15VJhI5355mVlZWsn79empqasjPzwdgxowZvPHGG/zyl79kypQpHld4edbYMdj3LCK05odYT/yQjkcfw77z69jByV6XdommD+D3R3te5/UjMGMiDL/6ipQk0ie+HZlVVFQwe/bsziD7iwkTJhAfH08wGATg6NGj5Ofnk52dzeTJk3n55Ze9KPcS9tw7sUaPoqO0HAIB7EVFXpfUrd31YEW4noif+TLMmpqaOHDgAPPnz7/kucbGRnJzc0lISACgtLSUBQsWUFdXx7p167jrrru4cOFCr9uwLCuipaampk/fg2VZWMHJcOYM9m23YsXHR91HTU1NxHX2dXn62c2EQh091uGEOvjJf1T2ey1atHx6iYZvwwxgxIgRXdrPnTtHbW1t5ynmqVOneOWVVygpKQFg+vTpXH/99ezcufPKFtwNt6EBZ8NG7AXzcX6+AffECa9L6taFD8/0vpJlRbaeiId8GWbp6ekA1NXVdWlfvXo1zc3NnRf/GxsbGT58eOcoDWDcuHEcO3as1224rhvRUlBQEHX97oX28HWyb8wlUFKM9eVphB77Aa4T3bRgQUFBxHX2dVn78N3YgZ4vndp2gCcrlvR7LVq0fHqJhi8nADIzMwkGg1RUVJCWlkZGRgZVVVVUV1cD+HYm8y+cp57GiovDLvoWAIGyJXSUluM8t5nA/L/1uLquvnAdXJcK752+OIv5SRYwMg0mDL+ydYlEy5cjM9u22bRpE7m5uSxdupTi4mLS09MpLy8nEAh0XvwfPXo0x48f5/z5852vbWhoYMyYMV6VjrN3H071iwRWPIAVF/5dYQ0dSuDBZTj/+XPchgbPauuObUPpDPj8VV3b/3K1YkQqfKcAorx8IXLFWW60YzkPFRUVsX//ft58883OtlmzZjF37lzKysrYtWsX8+bN4+jRowwZMiQm25y5Z7dnt82+ZVga22+86YpsqyME+xvhmV3hxxOvhy+Ng+AoiAtckRJEPhNfjswuZ8+ePZecYj755JNs3LiR7OxsFi9eTGVlZcyCbDCJC8DUcRcfl84If5xJQSYDhS+vmXWnra2Nuro6ysrKurRnZmby0ksveVSViPjFgAmz5ORkQqGQ12WIiE8NqNNMEZHLUZiJiBEUZiJiBIWZiBhBYSYiRlCYiYgRBsxbM7ySl5IyKLctMtAozHrxeM4kr0sQkQjoNFNEjKAwExEjKMxExAgKMxExgsJMRIygMBMRIyjMRMQICjMRMYLCTESMoDATESMozETECAozETGCwkxEjKC7Zohv3P/OQfa3tnqy7byUFN0hZYBTmIlv7G9t9eyvx8vAp9NMETGCwkxEjKDTTOn04YWL/z56CoZfBUlDvKvHZG0fwYmzEHIgIR6GXw0J+mn8TLT7BrmWP8Nrh+GNY3DqE9fe1/46/PXaFJgyFqZNgNShnpRojBNn4dVD8GYjtHzY9TkLGHE13DgObhoPyYmelDigKcwGqY4QvPgH2HEQHPfy651shV//AbYdgK/eAF/NhbjAlavTBB+1w5a9sOvQ5ddxgeYz8Kt94f+XO/LglhywdSEoYgqzQej0h/DvO+Hd05G/xnHDofbWn2BxAVyV1F/VmeX42fC+fr8t8te0h+D5N8L7uiQfEuP7rz6TKPcHmbPn4MfboguyT2r6AH68PXzNR3p2sjW8r6MJsk86dBx+sgPOt8e2LlMpzAYR14UNr8GpHn641n4rvPTkxFnYuDvcn3Qv5MDPXobWHkI/kn197BT8997Y1mYqhdkg8rt6+L/m2PR1oCk8aSDd23EQmlpi09euQ3Dovdj0ZTJfh5njOKxZs4asrCwSExPJy8ujtraWnJwcFi9e7HV5A4rjwra3Ytvn9gManXXnQgfsfDu2fW6P8f+diXwdZiUlJaxatYrS0lK2bt1KYWEhCxcupL6+nqlTp3pd3oBy6L2ub72IheYzUH8ytn1Go+PxtXQsX4HrOJ1truPQcd9yQmuf8KyufY1d37MXC++8ByfPxrZP0/g2zCorK1m/fj1btmxh2bJlzJgxg4ceeohp06bR0dHBlClTvC5xQKnrp9OU/uo3EoGyUtyTJ3Ge29zZ5vyiCvf0Gewl3/Gsrn7b18f7p19T+DbMKioqmD17Nvn5+V3aJ0yYQHx8PMFgEICHH36Y7OxsbNumqqrKi1IHhD/20+e3//h+//QbCSspicCDy3GeeRa3vgH3yBGcDRuJW7EcK9G7d502GbivBwJfvs+sqamJAwcO8L3vfe+S5xobG8nNzSUhIQGA2bNnc/fdd3PPPfdEtQ3LsmJS60BR9M8HScuY2KWtp5m0yz1377NdH9fseoPSW2Nzyh947FHsvGBUr7EnfgG3cB4dj64GF+xv3oWVnRX1tmtqarC+dHPUr+vOknUtJHwutfNxbzOWke7ryuf+h4XT5ny24gYYN4qLsr4cmTU1NQEwYsSILu3nzp2jtra2yynm9OnTyczMvKL1DUj9FN6W5f0hZC9cgDVkCFZSInbhPK/LMXpf+5kvR2bp6ekA1NXVcfvtt3e2r169mubm5phc/I8m8U3wo99cerH+07/54eIoobvnuvPlm/6KZ2O0L2fu2d2n+5lZgQCMGQMBG6uPn/8pKChge4y+j0e2dJ1sudy+jHZfz5v7NZ5fPbiO22j4MswyMzMJBoNUVFSQlpZGRkYGVVVVVFdXA2gmsw9GpvXPzOOotNj3OdCNHBb7mWPQvu6NL8ettm2zadMmcnNzWbp0KcXFxaSnp1NeXk4gEOi8+C+RG//5/uk3s5/6Hci0r73hy5EZQHZ2Njt37uzSVlRUxKRJk0hK0qeco5WbASmJPX+8JlrDhsLE62LXnymmjg3fJaM9FLs+R6VpZNYbX47MLmfPnj2XnGJ+//vfZ+TIkbz22muUlpYycuRIjhw54lGF/hUXCN9SJpbyJ/rnFjVxy+8j7r57vS4DgKEJcPOE2PY5Y2Lv6wx2PjkUe9fW1kZdXd0lb5ZdtWoVTU1NnD9/nvfff5+mpibGjx/vUZX+duskyBgWm77GXAO3ZMemLxPdkQfDPhebvnIz4ItjYtOXySx3sE3rDXLvnQnPbH6Wj9skJ8DfzYJrr4pdXdD32cxYuGVYGttvvCmmfTachH/77Wc73bwmObyvdf+43g2YkZnExoiroey2cCD1xVVJUD4z9kFmonHXhm9k2dd7+1+bAuW3KcgipTAbhEamwYN3QHBUdK/74hh44Ha4LrVfyjJS1gh44A7IGh7d66Znwf1fg7Tk/qnLRL6dzZT+lZIExX8Dh0/Aq3Xw5h+7/1sAATscel/J7r+3HJjummRYehu8/W54X7/d3P2tk+ID4T8e85VszVz2hcJsELOs8Igha3j4HlzvnobjZ8LXeOID4RHYdanhf8tnY1vhC/m5GeHbYP+pBX60LfzcN6fB9anhfR3QuVKfKcwEgCFxMDY9vEj/Sojv+gbYv9ZHi2NCvwdExAgKMxExgk4zxTfyUlIG5bYlNhRm4huP50zyugQZwHSaKSJGUJiJiBEUZiJiBIWZiBhBYSYiRlCYiYgRFGYiYgSFmYgYQWEmIkZQmImIERRmImIEhZmIGEFhJiJG0F0zenH/OwfZ39rqybbzUlJ0JwnpFyYe1wqzXuxvbfXsbzmK9BcTj2udZoqIERRmImIEhZmIGEFhJiJGUJiJiBEUZiJiBIWZiBhBYSYiRvB1mDmOw5o1a8jKyiIxMZG8vDxqa2vJyclh8eLFXpcn0ieuC0dOXHz8q71w4qx39ZjC12FWUlLCqlWrKC0tZevWrRQWFrJw4ULq6+uZOnWq1+V1y21vp33Jdwmt+2mX9tDm52n/9iLctjaPKhM/aPsI/uU38MS2i22/PQgVv4KNr0PI8a62nnQ8vpaO5StwnYsFuo5Dx33LCa19wsPKLvJtmFVWVrJ+/Xq2bNnCsmXLmDFjBg899BDTpk2jo6ODKVOmeF1it6z4eOJWLMd5oRpn7z4A3IYGnKd+RuCBZVjJyd4WKJ4JOfDkDjh2qvvnXz8Cm/dc2ZoiFSgrxT15Eue5zZ1tzi+qcE+fwV7yHQ8ru8i3YVZRUcHs2bPJz8/v0j5hwgTi4+MJBoO0tLQwZ84csrOzycvLY9asWRw+fNijii+yxo7BvmcRoTU/xP3gAzoefQz7zq9jByd7XZp46EATNLWA28M6rx6C0x9esZIiZiUlEXhwOc4zz+LWN+AeOYKzYSNxK5ZjJSZ6XR7g0zBramriwIEDzJ8//5LnGhsbyc3NJSEhAcuyuPfee6mrq2P//v3MmTOH4uJiDyq+lD33TqzRo+goLYdAAHtRkdclicf+twEsq+d1XOD3DVeknKjZE7+AXTiPjkdX0/HoGuxv3oWVneV1WZ18G2YAI0aM6NJ+7tw5amtrO08xU1NTmTlzZufz06dPp6EhsiPBsqyIlpqamj59D5ZlYQUnw5kz2LfdihUfH3UfNTU1Edepxf/L9prduD0NywDHCbHyn37Q77X09bi2Fy7AGjIEKykRu3Ben/qI5riOqrY+VdPP0tPTAairq+vSvnr1apqbmy978X/t2rXMnTu3v8uLiNvQgLNhI/aC+Tg/34B74kTvLxKjnWs9ieOEelzHtgN81HqZi2o+YAUCMGYMjB2DZfsrPnx5P7PMzEyCwSAVFRWkpaWRkZFBVVUV1dXVAN2G2cqVKzl8+DA7duyIaBtub78iPzZzz+6o7/vkXmgPXyf7xlwCxYtwW1oIPfYDAv9cEdUBUFBQwPYI6xT/+/1ReObV3tfb+mwF1yRX9GstfTmuY6W/jmt/RevHbNtm06ZN5ObmsnTpUoqLi0lPT6e8vJxAIEAwGOyy/iOPPMILL7zAiy++yNChQz2q+iLnqaex4uKwi74FQKBsCe57x7vMBMngkzcKhl8FPZ08fWkcXKMJ7z7x5cgMIDs7m507d3ZpKyoqYtKkSSQlJXW2rVy5kurqarZt20ZqauoVrvJSzt59ONUvEvevP8KKC+9ea+hQAg8uI/T3/4B94xSsceM8rlK8EBeApbfBup3QfPrjyYCPBygukDcaCm/ysMABznIjPd/ygYkTJ3LzzTfz9NNPA/DWW29xww03MH78eJI/8f6tffv2xWybXg7HbxmWxvYbdXSbxnHg7Xdh7zE41w6pQ+Gm8TD6mitXg4nHtW9HZp/W1tZGXV0dZWVlnW25ubkRX/sS8QvbhtyR4UViZ8CEWXJyMqFQzzNBIjJ4+XICQEQkWgozETGCwkxEjKAwExEjKMxExAgKMxExgsJMRIwwYN5n5pW8lJRBuW0xm4nH9YD6OJOIyOXoNFNEjKAwExEjKMxExAgKMxExgsJMRIygMBMRIyjMRMQICjMRMYLCTESMoDATESMozETECAozETGCwkxEjKAwExEjKMxExAgKMxExgsJMRIygMBMRI/w/njwrckIN2WEAAAAASUVORK5CYII=%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As you can see, constructing the tensor network analog now works more or less identically:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_nodes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="n">tn</span><span class="o">.</span><span class="n">NodeCollection</span><span class="p">(</span><span class="n">all_nodes</span><span class="p">):</span>
+    <span class="n">id0</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">Node</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">qubits0</span> <span class="o">=</span> <span class="n">id0</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">id0</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+    
+    <span class="c1"># The essential part</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">CNOT</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">CNOT</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">apply_gate</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And now we compare:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">U3_tn</span> <span class="o">=</span> <span class="n">tn</span><span class="o">.</span><span class="n">contractors</span><span class="o">.</span><span class="n">greedy</span><span class="p">(</span><span class="n">all_nodes</span><span class="p">,</span> <span class="n">output_edge_order</span><span class="o">=</span><span class="n">qubits</span><span class="o">+</span><span class="n">qubits0</span><span class="p">)</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">U3_qs_reversed</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc3</span><span class="o">.</span><span class="n">reverse_bits</span><span class="p">())</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">U3_tn</span><span class="p">,</span> <span class="n">U3_qs_reversed</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Alright, this resounding <strong>True</strong> is the best way to conclude that comes to mind. I own many thanks to <a href="https://github.com/LuchnikovI">Ilia Luchnikov</a> for the help with <code>tensornetwork</code> library. Any questions are welcome in the comments!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     tex2jax: {
+       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+       processEscapes: true
+     }
+   });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="idnm/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/qiskit/tensor%20networks/quantum%20concepts/2021/08/18/Matrix-representation-of-quantum-circuits.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My take on various quantum concepts and brief reviews of latest research papers</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
