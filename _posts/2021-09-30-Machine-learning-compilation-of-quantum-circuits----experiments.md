@@ -266,7 +266,7 @@ TLB for 6-qubit unitary is 1020
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The circuits that we are going to be train will be built out of two types of two-qubit blocks. Here are the definitions:</p>
+<p>First let us define the basic 1- and 2-qubit gates in matrix form. For now you can safely ignore the use <code>jnp</code> arrays instead of <code>np</code> arrays.</p>
 
 </div>
 </div>
@@ -278,16 +278,19 @@ TLB for 6-qubit unitary is 1020
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cx_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Controlled-NOT (or controlled-X gate)</span>
+<span class="n">cx_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 
+<span class="c1"># Controlled-Z gate</span>
 <span class="n">cz_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
+<span class="c1"># Pauli matrices</span>
 <span class="n">x_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 
@@ -297,6 +300,7 @@ TLB for 6-qubit unitary is 1020
 <span class="n">z_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
+<span class="c1"># Rotation gates</span>
 <span class="k">def</span> <span class="nf">rx_mat</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">x_mat</span><span class="o">*</span><span class="n">jnp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
@@ -305,14 +309,35 @@ TLB for 6-qubit unitary is 1020
 
 <span class="k">def</span> <span class="nf">rz_mat</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">z_mat</span><span class="o">*</span><span class="n">jnp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
 
+    </div>
+</div>
+</div>
 
-<span class="c1"># Class for a single building block</span>
-<span class="k">class</span> <span class="nc">block</span><span class="p">():</span>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The circuits that we are going to train will be built out of two types of 2-qubit blocks. Here are the definitions:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">block</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gate_name</span><span class="p">,</span> <span class="n">angles</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gate_name</span> <span class="o">=</span> <span class="n">gate_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">angles</span> <span class="o">=</span> <span class="n">angles</span>
-        
+    
+    <span class="c1"># Quantum circuit in `qiskit` corresponding to our block</span>
     <span class="k">def</span> <span class="nf">circuit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gate_name</span> <span class="o">==</span> <span class="s1">&#39;cx&#39;</span><span class="p">:</span>
@@ -331,6 +356,7 @@ TLB for 6-qubit unitary is 1020
         
         <span class="k">return</span> <span class="n">qc</span>
     
+    <span class="c1"># JAX-compatible unitary corresponding to our block</span>
     <span class="k">def</span> <span class="nf">unitary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gate_name</span> <span class="o">==</span> <span class="s1">&#39;cx&#39;</span><span class="p">:</span>
             <span class="n">entangling_matrix</span> <span class="o">=</span> <span class="n">cx_mat</span>
@@ -440,7 +466,7 @@ TLB for 6-qubit unitary is 1020
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>They only differ by the type of the two-qubit gate. The circuits that we are going to build seem to do equally well for any choice of two-qubit gate. I will mostly use <code>cz</code> gate because it is symmetric under the swap of qubits, but I will also occasinally bring up the <code>cx</code> gate to illustrate that it has the same performance. Angles $a_0$-$a_3$ are going to be optimized. Together with the circuits our <code>block</code> class can return a unitary corresponding to the cicuit. Of course we could have extracted the unitary from the circuit itself via <code>qiskit</code> API, but this would make the matrix representation incompatible with <code>JAX</code> which we will rely heavily for optimization. So at this point we needed a bit of wheel reivention. Let us check that our implementation is consisten with <code>qiskit</code>:</p>
+<p>Our <code>block</code> class can return a <code>qiskit</code> circuit and the correponding unitary matrix. Of course we could have extracted the unitary from the circuit itself via <code>qiskit</code> API, but this would make the matrix representation incompatible with <code>JAX</code> which will be our workhorse for optimization. So at this point we needed a bit of wheel reivention. Let's check that our implementation is consistent with <code>qiskit</code>:</p>
 
 </div>
 </div>
@@ -452,8 +478,9 @@ TLB for 6-qubit unitary is 1020
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span><span class="p">,</span> <span class="n">subkey</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span><span class="p">,</span> <span class="n">subkey</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> 
 <span class="n">angles</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,),</span> <span class="n">minval</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">jnp</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">gate</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cx&#39;</span><span class="p">,</span> <span class="s1">&#39;cz&#39;</span><span class="p">]:</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">block</span><span class="p">(</span><span class="n">gate</span><span class="p">,</span> <span class="n">angles</span><span class="p">)</span>
     <span class="n">qc</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">circuit</span><span class="p">()</span>
@@ -486,7 +513,26 @@ qiskit unitary is the same as our unitary for block with gate cz: True
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>To match matrix representations of quantum circuits might be a headache as I discussed in <a href="https://idnm.github.io/blog/qiskit/tensor%20networks/quantum%20concepts/2021/08/18/Matrix-representation-of-quantum-circuits.html">another post</a>, so this was a neseccary check to do.</p>
+<p>Our two bulding blocks (<code>cz</code> and <code>cx</code>) only differ by the type of the two-qubit gate. The circuits that we are going to build seem to do equally well for any choice of two-qubit gate. I will mostly use <code>cz</code> gate because it is symmetric under the swap of qubits, but I will also occasinally bring up the <code>cx</code> gate to illustrate that it has the same performance. Angles $a_0$-$a_3$ are going to be optimized.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Optimization-with-JAX">Optimization with <code>JAX</code><a class="anchor-link" href="#Optimization-with-JAX"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What is <code>JAX</code>? Well, it's basically <code>numpy</code> on steroids. You can check out <a href="https://jax.readthedocs.io/en/latest/notebooks/quickstart.html">the official documentation</a> or numerous nice overwievs on the web. For our purposes two key features of <code>JAX</code> are</p>
+<ol>
+<li>Autograd </li>
+<li>JIT or just-in-time compilation</li>
+</ol>
+
 </div>
 </div>
 </div>
