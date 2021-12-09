@@ -1,0 +1,202 @@
+[I 2021-12-08 10:05:13.429 ServerApp] jupyterlab | extension was successfully linked.
+[I 2021-12-08 10:05:13.860 ServerApp] jupyter_nbextensions_configurator | extension was found and enabled by nbclassic. Consider moving the extension to Jupyter Server's extension paths.
+[I 2021-12-08 10:05:13.861 ServerApp] jupyter_nbextensions_configurator | extension was successfully linked.
+[I 2021-12-08 10:05:13.888 ServerApp] ipyparallel.nbextension | extension was found and enabled by nbclassic. Consider moving the extension to Jupyter Server's extension paths.
+[I 2021-12-08 10:05:13.889 ServerApp] ipyparallel.nbextension | extension was successfully linked.
+[I 2021-12-08 10:05:13.890 ServerApp] nbclassic | extension was successfully linked.
+[I 2021-12-08 10:05:13.947 ServerApp] nbclassic | extension was successfully loaded.
+[I 2021-12-08 10:05:13.947 ServerApp] Loading IPython parallel extension
+[I 2021-12-08 10:05:13.948 ServerApp] ipyparallel.nbextension | extension was successfully loaded.
+[I 2021-12-08 10:05:13.949 ServerApp] [jupyter_nbextensions_configurator] enabled 0.4.1
+[I 2021-12-08 10:05:13.949 ServerApp] jupyter_nbextensions_configurator | extension was successfully loaded.
+[I 2021-12-08 10:05:13.951 LabApp] JupyterLab extension loaded from /home/idnm/.local/lib/python3.8/site-packages/jupyterlab
+[I 2021-12-08 10:05:13.951 LabApp] JupyterLab application directory is /home/idnm/.local/share/jupyter/lab
+[I 2021-12-08 10:05:13.956 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2021-12-08 10:05:13.957 ServerApp] Serving notebooks from local directory: /home/idnm/Dropbox/hep/Sheets/Quantum Computing/blog
+[I 2021-12-08 10:05:13.957 ServerApp] Jupyter Server 1.8.0 is running at:
+[I 2021-12-08 10:05:13.957 ServerApp] http://localhost:8888/lab?token=cec693e17165c5735f80de05f7020d3468f319e8b8183a7c
+[I 2021-12-08 10:05:13.957 ServerApp]     http://127.0.0.1:8888/lab?token=cec693e17165c5735f80de05f7020d3468f319e8b8183a7c
+[I 2021-12-08 10:05:13.957 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2021-12-08 10:05:14.019 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///home/idnm/.local/share/jupyter/runtime/jpserver-6134-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/lab?token=cec693e17165c5735f80de05f7020d3468f319e8b8183a7c
+        http://127.0.0.1:8888/lab?token=cec693e17165c5735f80de05f7020d3468f319e8b8183a7c
+[I 2021-12-08 10:05:18.764 LabApp] Build is up to date
+[W 2021-12-08 10:05:18.797 ServerApp] 404 GET /spellchecker/language_manager?1638947118437 (127.0.0.1) 29.28ms referer=http://localhost:8888/lab
+[W 2021-12-08 10:05:19.305 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.318 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.332 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.352 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.469 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.475 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.532 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.545 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.572 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.573 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.591 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.606 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.640 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.653 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.677 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.696 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.769 ServerApp] 404 GET /api/contents/2021-09-30-Machine%20learning%20compilation%20of%20quantum%20circuits%20--%20experiments.ipynb?content=0&1638947119757 (127.0.0.1): No such file or directory: 2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[W 2021-12-08 10:05:19.769 ServerApp] No such file or directory: 2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[W 2021-12-08 10:05:19.770 ServerApp] 404 GET /api/contents/2021-09-30-Machine%20learning%20compilation%20of%20quantum%20circuits%20--%20experiments.ipynb?content=0&1638947119757 (127.0.0.1) 1.92ms referer=http://localhost:8888/lab
+[W 2021-12-08 10:05:19.820 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.875 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.922 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:19.961 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.306 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.317 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.434 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.459 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.580 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.648 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.670 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.676 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.708 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.742 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.774 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.794 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.795 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:20.898 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:21.151 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:05:21.206 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[I 2021-12-08 10:05:34.332 ServerApp] Kernel started: 08ec2737-6c70-487f-972a-3eed111d4031
+[I 2021-12-08 10:07:33.482 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:09:33.638 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:11:33.801 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:13:33.948 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:15:34.868 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:31:29.388 ServerApp] Starting buffering for 08ec2737-6c70-487f-972a-3eed111d4031:e899cbeb-4112-4b76-a1a4-21e134ae5e74
+[W 2021-12-08 10:32:01.823 ServerApp] 404 GET /spellchecker/language_manager?1638948721594 (127.0.0.1) 4.03ms referer=http://localhost:8888/lab/tree/_notebooks/2021-09-30-Machine%20learning%20compilation%20of%20quantum%20circuits%20--%20experiments.ipynb
+[I 2021-12-08 10:32:01.865 LabApp] Build is up to date
+[W 2021-12-08 10:32:02.151 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.164 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.186 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.199 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.272 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.280 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.298 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.312 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.320 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.335 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.349 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.360 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.375 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.393 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.456 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.534 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.555 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.615 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.668 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:02.681 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.137 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.177 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.228 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.246 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.532 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.599 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.680 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.732 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.754 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.806 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.813 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.871 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.935 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:03.986 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:04.402 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2021-12-08 10:32:04.482 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[I 2021-12-08 10:49:18.411 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:51:18.582 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:53:18.761 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:55:18.927 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:57:19.128 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 10:59:19.326 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:01:19.549 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:03:19.733 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:05:19.914 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:07:20.075 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:09:20.248 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:11:20.415 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:13:20.613 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:15:20.815 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:17:20.962 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:19:21.101 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:21:21.238 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:23:21.864 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:25:22.900 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:27:23.857 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:29:24.046 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:31:24.195 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:33:24.343 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:35:24.514 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:35:31.833 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:37:32.045 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:38:02.001 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:39:48.781 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:41:48.911 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:43:49.098 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 11:44:09.218 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 12:46:11.929 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 12:52:12.422 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 12:54:12.626 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 12:56:12.783 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:00:12.924 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:04:13.126 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:06:13.316 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:08:13.556 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:10:14.435 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:12:14.596 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:14:14.797 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:16:15.690 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:18:16.181 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:20:16.362 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:22:16.534 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:24:16.666 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:26:16.795 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:28:16.922 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:30:17.075 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:32:17.260 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:34:17.485 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:36:17.712 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:40:17.878 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:42:18.072 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:44:18.282 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:46:18.469 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:48:18.725 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:54:18.915 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:56:19.147 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 13:58:19.325 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:00:19.593 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:02:19.819 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:04:20.021 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:06:20.203 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:08:20.445 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:10:20.594 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:12:20.826 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:14:20.997 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:16:21.152 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:18:21.323 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:20:21.476 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:24:21.645 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:26:09.776 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:28:09.920 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:30:10.092 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:32:10.240 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:34:10.396 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:36:10.510 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:38:10.684 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:40:10.853 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:42:11.002 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:44:11.154 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:46:11.314 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:47:48.822 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:47:49.863 ServerApp] Saving file at /_notebooks/2021-09-30-Machine learning compilation of quantum circuits -- experiments.ipynb
+[I 2021-12-08 14:48:57.534 ServerApp] Starting buffering for 08ec2737-6c70-487f-972a-3eed111d4031:f2403bc5-8f3a-4670-8393-01999a44bc5e
+[W 2021-12-08 14:49:03.635 ServerApp] 404 GET /files/_notebooks/myimages/mlexperiments/tensor_contraction.svg?_xsrf=2%7C82be6f4a%7Caf824d04c34deee4b091698c1016fbfa%7C1638536668&1638964143624 (127.0.0.1) 3.39ms referer=http://localhost:8888/lab/tree/_notebooks/2021-09-30-Machine%20learning%20compilation%20of%20quantum%20circuits%20--%20experiments.ipynb
+[W 2021-12-08 14:49:03.637 ServerApp] 404 GET /files/_notebooks/myimages/mlexperiments/tensor_contraction_twisted.svg?_xsrf=2%7C82be6f4a%7Caf824d04c34deee4b091698c1016fbfa%7C1638536668&1638964143624 (127.0.0.1) 4.82ms referer=http://localhost:8888/lab/tree/_notebooks/2021-09-30-Machine%20learning%20compilation%20of%20quantum%20circuits%20--%20experiments.ipynb
+[I 2021-12-08 14:49:34.961 ServerApp] Starting buffering for 08ec2737-6c70-487f-972a-3eed111d4031:0b494995-e4ee-44da-9ffa-3fcd25f2b7c8
