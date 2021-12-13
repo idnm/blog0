@@ -2626,7 +2626,7 @@ Wall time: 6min
 </h1>
 <p>The main goal was to illustrate that numerical compilation of small-scale random unitaries can be very efficient in terms of gate count, and seems to reach the theoretical lower bound in all cases considered, regardless of topological restrictions.</p>
 <p>It is interesting to note that a variety of optimization procedures are used in the literature. In <a href="http://arxiv.org/abs/2106.05649">M&amp;S</a> a simple version of the gradient descent is used, in <a href="http://arxiv.org/abs/2109.06770">R&amp;Z</a> an interesting procedure of one-qubit gate decoupling is used (I must admit I do not understand exactly what it does), and in <a href="http://arxiv.org/abs/2109.13223">KTS preprint</a> a funny optimization one-angle-at a time is used (because as a function of each angle the circuit is a simple triginometric function, it is trivial to optimize one parameter at a time). Here we used a slightly more advanced version of the gradient descent, the Adam algorithm. All approaches seem to work well on random unitaries.</p>
-<p>My preliminary investigations show that for special gates things get much more complicated than for generic random unitaries. But this is where the most intersting stuff is found, e.g. compilation of multi-component Toffoli gates on restricted connectivity. I hope to address these cases in a future blog post, or if I'm lucky, in a publication:)</p>
+<p>My preliminary investigations show that for special gates things get much more complicated than for generic random unitaries. But this is where the most intersting stuff is found, e.g. compilation of multi-component Toffoli gates on restricted connectivity. I hope to address these cases in a future blog post!</p>
 
 </div>
 </div>
