@@ -16,7 +16,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="pisa.svg">
+   sodipodi:docname="pisa.svg"
+   inkscape:export-filename="/home/idnm/Dropbox/hep/Sheets/Quantum Computing/blog/_notebooks/myimages/mlexperiments/pisa.png"
+   inkscape:export-xdpi="242"
+   inkscape:export-ydpi="242">
   <defs
      id="defs2">
     <linearGradient
@@ -79,7 +82,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.52684812"
-     inkscape:cx="476.92139"
+     inkscape:cx="469.32907"
      inkscape:cy="446.59097"
      inkscape:document-units="mm"
      inkscape:current-layer="layer4"
