@@ -274,7 +274,7 @@ A = \frac{L(\pi/2)+L(-\pi/2)}{2},\qquad C=\frac{L(\pi/2)-L(-\pi/2)}{2},\qquad B 
 <p>Perhaps the best known consequence of this property is the parameter shift rule for derivatives. First, a bit of a background. Let's assume we need to estimate the derivative of some function $f(x)$ that we only have numerical access to. Then, there is nothing much better one can do than to use the finite difference approximations. For example, using two function evaluations it is possible to compute the first derivative up to the second approximation order</p>
 \begin{align*}
 f'(x)=\frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon}+O(\epsilon^2)
-\end{align*}<p>In general, adding one more evaluation point allows to improve the accuracy by one order. However, when you have additional knowledge about the function much more efficient strategy may exists. In particular, for VQE loss functions \eqref{loss VQE} an <em>exact</em> derivative computation is possible with just two function evaluations</p>
+\end{align*}<p>In general, adding one more evaluation point allows to improve the accuracy by one order. However, when you have additional knowledge about the function much more efficient strategy may exists. In particular, for VQE loss functions \eqref{loss VQE}, which are basically simple sinusoidals, an <em>exact</em> derivative computation is possible with just two function evaluations</p>
 \begin{align*}
 L'(\theta_i)=-A \sin(\theta_i)+B\cos{\theta_i}=\frac{L(\theta_i+\pi/2)-L(\theta_i-\pi/2)}{2} \ ,
 \end{align*}<p>which follows from $\sin(x+\pi/2)=\cos x,\,\,\cos(x+\pi/2)=-\sin x$. Having access to exact derivatives generally enhances the performance of the gradient-based optimizers.</p>
@@ -294,7 +294,7 @@ L'(\theta_i)=-A \sin(\theta_i)+B\cos{\theta_i}=\frac{L(\theta_i+\pi/2)-L(\theta_
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>An interesting extension of this idea, that is apparently much less known than the parameter-shift rule itself, was proposed in <a href="http://arxiv.org/abs/1903.12166">http://arxiv.org/abs/1903.12166</a> (I believe there another independent paper introducing the same method, but I can't find it now). Instead of using structural properties of \eqref{loss VQE} to just compute derivatives, one can find the exact minimum of $L(\theta_i)$ with respect to any angle $\theta_i$ (assuming other angles are fixed). I.e. instead of a partial derivative one can compute "the partial minimum".</p>
+<p>An interesting extension of this idea, that is apparently much less known than the parameter-shift rule itself, was proposed by several group at roughly the same time (<a href="http://arxiv.org/abs/1903.12166">[1]</a>, <a href="https://arxiv.org/abs/1904.03206">[2]</a>, <a href="https://arxiv.org/abs/1905.09692">[3]</a>, thanks to <a href="https://www.linkedin.com/in/v-vijendran/">Vijendran</a> for additional refs). Instead of using structural properties of \eqref{loss VQE} to just compute derivatives, one can find the exact minimum of $L(\theta_i)$ with respect to any angle $\theta_i$ (assuming other angles are fixed). I.e. instead of a partial derivative one can compute "the partial minimum".</p>
 <p>Indeed, since just three three evaluations fix $L(\theta_i)$ completely, and the function itself is rather simple, there is no problem finding $\operatorname{argmin}_{\theta_i}L(\theta_i)$ exactly. The explicit formula could be more transparent, but it is a simple trigonometry in the end (double check if you a going to use it!)</p>
 \begin{align*}
 \theta^*=\operatorname{argmin}_{\theta}\left(A \cos\theta+B\sin\theta+C\right)=\cases{\arctan \frac{B}{A}+\pi,&amp;A&gt;0\\\arctan \frac{B}{A},&amp; A&lt;0}
@@ -543,12 +543,12 @@ This expression looks simple, but it is a sum with $2^p$ terms, so for any reaso
 \end{align*}
 Turns out this limiting landscape is very simple and can be found in a similar way to the average considered in the previous section. Indeed, the loss function \eqref{loss exp} can be represented in the following form 
 \begin{align*}
-L(\theta)=const+A_1\cos(\theta_1)+B_1\sin(\theta_1)+A_2\cos(\theta_2)+B_2\sin(\theta_2)+A_{12}\cos(\theta_1)\cos(\theta_2)+B_{12}\cos(\theta_1)\sin(\theta_2)+\dots
+L(\theta)=const+A_1\cos(\theta_1)+B_1\sin(\theta_1)+A_2\cos(\theta_2)+B_2\sin(\theta_2)+\\A_{12}\cos(\theta_1)\cos(\theta_2)+B_{12}\cos(\theta_1)\sin(\theta_2)+\dots
 \end{align*}
 This is an example with two parameters and several cross-terms are omitted. Here is the key point -- each cross-term gets smaller under application of $\Delta^{-1}$, e.g. $\Delta^{-1} \cos\theta_1=\cos\theta_1$, $\Delta^{-1} \cos\theta_1\cos\theta_2=\frac12 \cos\theta_1\cos\theta_2$ etc. This means, that under the application of $\Delta^{-\infty}$ only the single-variable terms will survive (we ignore the constant term)
-\begin{align*}
-\mathcal{L}(\theta)=\Delta^{-\infty}L(\theta)=\sum_{i=1}^{p}\left(A_i\cos\theta_i+B_i\sin\theta_i\right)\,\,\substack{p=2\\=}\,\,A_1\cos(\theta_1)+B_1\sin(\theta_1)+A_2\cos(\theta_2)+B_2\sin(\theta_2)
-\end{align*}</p>
+\begin{multline*}
+\mathcal{L}(\theta)=\Delta^{-\infty}L(\theta)=\sum_{i=1}^{p}\left(A_i\cos\theta_i+B_i\sin\theta_i\right)\substack{p=2\\=}\\\,\,A_1\cos(\theta_1)+B_1\sin(\theta_1)+A_2\cos(\theta_2)+B_2\sin(\theta_2)
+\end{multline*}</p>
 <p>These terms are easy to compute if we can compute averages. For example, averaging over all $\theta_i$ except theta $\theta_1$ will only leave the monomials with $\theta_1$
 \begin{align*}
 A_1\cos{\theta_1}+B_1\sin{\theta_1}=\frac{1}{(2\pi)^{p-1}}\int_0^{2\pi} \prod_{i=2}^pd\theta_i\,\, L(\theta) \ .
@@ -580,8 +580,8 @@ How to perform the average on the rhs was shown in the previous section. Since t
     
     
 </figure>
-
-This is yet another piece of evidence showing that complexity of the classical optimization loop in variational algorithms can not be ignored, as if the problems posed by getting a real quantum device to work were not enough. One possible way to alleviate the issues is to use specifically designed parametrized circuits, which are aware of the symmetries or additional properties of the Hamiltonian. I have a feeling though, that even performance of a generic Hamiltonian-agnostic VQE could be improved by exploiting some structural properties of the loss landscapes. In this blog post to speculated about what could such an approach look like.</p>
+</p>
+<p>This is yet another piece of evidence showing that complexity of the classical optimization loop in variational algorithms can not be ignored, as if the problems posed by getting a real quantum device to work were not enough. One possible way to alleviate the issues is to use specifically designed parametrized circuits, which are aware of the symmetries or additional properties of the Hamiltonian. I have a feeling though, that even performance of a generic Hamiltonian-agnostic VQE could be improved by exploiting some structural properties of the loss landscapes. In this blog post I speculated about what could such an approach look like.</p>
 
 </div>
 </div>
