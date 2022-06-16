@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Machine learning error correction codes | Notes on &lt; Quantum Computing &gt;</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Machine learning error correction codes" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Sweeping conceptual difficulties under the rug with a black-box approach" />
+<meta property="og:description" content="Sweeping conceptual difficulties under the rug with a black-box approach" />
+<link rel="canonical" href="https://idnm.github.io/blog/blog/qml/qec/2022/06/12/Machine-learning-error-correction-codes.html" />
+<meta property="og:url" content="https://idnm.github.io/blog/blog/qml/qec/2022/06/12/Machine-learning-error-correction-codes.html" />
+<meta property="og:site_name" content="Notes on &lt; Quantum Computing &gt;" />
+<meta property="og:image" content="https://idnm.github.io/blog/blog/images/black_box.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-12T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://idnm.github.io/blog/blog/qml/qec/2022/06/12/Machine-learning-error-correction-codes.html","@type":"BlogPosting","headline":"Machine learning error correction codes","dateModified":"2022-06-12T00:00:00-05:00","datePublished":"2022-06-12T00:00:00-05:00","image":"https://idnm.github.io/blog/blog/images/black_box.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://idnm.github.io/blog/blog/qml/qec/2022/06/12/Machine-learning-error-correction-codes.html"},"description":"Sweeping conceptual difficulties under the rug with a black-box approach","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://idnm.github.io/blog/blog/feed.xml" title="Notes on &lt; Quantum | Computing &gt;" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1154MLY31V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1154MLY31V');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+<meta name="google-site-verification" content="PavVqGD_DmVWpwhYbxaxic6hZ-SgRkZIu6MKjzrGJC8" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Notes on &lt; Quantum | Computing &gt;</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Machine learning error correction codes</h1><p class="page-description">Sweeping conceptual difficulties under the rug with a black-box approach</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-06-12T00:00:00-05:00" itemprop="datePublished">
+        Jun 12, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      19 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#QML">QML</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#QEC">QEC</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/idnm/blog/tree/master/_notebooks/2022-06-12-Machine learning error correction codes.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/idnm/blog/blob/master/_notebooks/2022-06-12-Machine learning error correction codes.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h1"><a href="#Classical-repetition-code">Classical repetition code </a></li>
+<li class="toc-entry toc-h1"><a href="#Conceptual-difficulties-with-QECC">Conceptual difficulties with QECC </a></li>
+<li class="toc-entry toc-h1"><a href="#Machine-learning-QECC">Machine learning QECC </a></li>
+<li class="toc-entry toc-h1"><a href="#Design-choices">Design choices </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Projecting-the-final-state">Projecting the final state </a></li>
+<li class="toc-entry toc-h2"><a href="#Dealing-with-continuum">Dealing with continuum </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Implementation">Implementation </a></li>
+<li class="toc-entry toc-h1"><a href="#Quantum-repetition-code">Quantum repetition code </a></li>
+<li class="toc-entry toc-h1"><a href="#Standard-description-of-the-quantum-repetition-code">Standard description of the quantum repetition code </a></li>
+<li class="toc-entry toc-h1"><a href="#Can-we-do-without-a-measurment?">Can we do without a measurment? </a></li>
+<li class="toc-entry toc-h1"><a href="#5-qubit-code">5 qubit code </a></li>
+<li class="toc-entry toc-h1"><a href="#Verification">Verification </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-06-12-Machine learning error correction codes.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">mynimize</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">jax.scipy.linalg</span> <span class="kn">import</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="n">expm</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">unitary_group</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Quantum error correction codes (QECC) are crucial to the prospects of the quantum technology as well as extremely interesting from a theoretical point of view. Despite similarities to the classical error correction, there are fundamental distinctions, too. A naive attempt to generalize classical codes to work with quantum bits faces several conceptual challenges, such as no-cloning theorem and decoherence induced by a measurement. I got curious how far one can go in constructing a simple quantum ECC without worrying too much about those, using a simple machine learning model with little to no physics assumptions underneath. I think the experiment worked out pretty well, for instance, I'll show how to get a 5 qubit code. Sure, most things appear to be obvious in retrospect, and rediscovering something that you know is possible is a completely different thing. Still, I found this to be a very interesting exercise with some bonus take-aways, such as:</p>
+<ul>
+<li>Measurements are not a necessary part of the error correction. Decoding can be a unitary operation (at least for some codes).</li>
+<li>?</li>
+<li>You can train the model on unitary errors only, general single-qubit error channels will be accounted for for free.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Classical-repetition-code">
+<a class="anchor" href="#Classical-repetition-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Classical repetition code<a class="anchor-link" href="#Classical-repetition-code"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Following 99% of error correction tutorials I will start with the classical repetition code. And you know what, I do not even feel guilty, this is a great time-tested warm up. So, we are sending a classical bit along a noisy channel and it is flipped with a probability $p$. The error probability can be suppressed if we are willing to send more bits. Namely, instead of sending <code>0</code> we send <code>000</code>, instead of <code>1</code> we send <code>111</code>. This is called <em>encoding</em>, we encoded a single <em>logical</em> bit into several <em>physical</em> bits. Due to errors, the message <code>000</code> can be corrupted in several ways:</p>
+<ol>
+<li>
+<code>000</code> : no corruption, with probability $(1-p)^3$</li>
+<li>
+<code>100</code>, <code>010</code>, <code>001</code>: single corrupted bit, with probability $3 p(1-p)^2$</li>
+<li>
+<code>110</code>, <code>011</code>, <code>101</code>: two corrupted bits, with probability $3 p^2(1-p)$</li>
+<li>
+<code>111</code>: all bits flipped, with probability $p^3$</li>
+</ol>
+<p>Same holds for the <code>111</code> message.</p>
+<p>Now, if the receiver sees any message except <code>000</code> or <code>111</code> he knows there was an error somewhere. He can try to fix the error by taking a majority vote, e.g. he assumes that <code>100</code> means <code>0</code> while <code>101</code> means <code>1</code>. If the single-bit errors are much more likely than two-bit or three-bit errors, this <em>decoding</em> strategy works. More precisely, it succeeds in cases (1) and (2) but fails in cases (3) and (4). The overall success probability is therefore $(1-p)^3+3p(1-p)^2$ and for $p&gt;1/2$ it is in fact greater than $1-p$, the success probability of the unencoded message.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conceptual-difficulties-with-QECC">
+<a class="anchor" href="#Conceptual-difficulties-with-QECC" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conceptual difficulties with QECC<a class="anchor-link" href="#Conceptual-difficulties-with-QECC"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now instead of sending a classical bit we want to send a qubit, also subject to noise. Can we use a similar strategy to protect the quantum bit? Textbooks often mention several apparent problems that make the quantum case sufficiently different from the classical.</p>
+<ol>
+<li>Qubit states are continuous. Instead of sending just <code>0</code> or <code>1</code> we need to be able to send an arbitrary superposition $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$.</li>
+<li>As a consequence, errors are also continuous. For example, instead of a full bit flip $X$ we can have 'just a bit' of a bit flip $R_X(\theta)=\cos(\theta/2)-i X \sin(\theta/2)$ with very small $\theta$. There are also additional error types with no classical counterparts, such as the phase flip error $Z$. General single-qubit unitary error is a linear combination $U=\alpha_0+\alpha_1 X+\alpha_2 Y+\alpha_3 Z$.</li>
+<li>Quantum states can not be cloned. This means that for an unknown quantum state $|\psi\rangle$ we can not construct and transmit e.g. $|\psi\rangle\otimes|\psi\rangle\otimes|\psi\rangle$ as a plain generalization of the repetition code, although that would definitely help. </li>
+<li>When the message is received, we need to look at it to decide if there was an error and choose a correction. But looking at the quantum states can break the coherence that we were looking to preserve.</li>
+</ol>
+<p>We now know that all these issues can be elegantly resolved and the modern theory of error correction is rich and beautiful. My personal agenda for this small project was to see how far can one go with a black-box approach, sweeping all conceptual problems under the rug. The main two assumptions are</p>
+<ul>
+<li>We need to use several physical qubits to safeguard a single logical qubit.</li>
+<li>We only try to protect against single-qubit errors.</li>
+</ul>
+<p><figure>
+  
+    <img class="docimage" src="/blog/images/copied_from_nb/myimages/ecc_training/black_box.png" alt="Drawing">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Machine-learning-QECC">
+<a class="anchor" href="#Machine-learning-QECC" aria-hidden="true"><span class="octicon octicon-link"></span></a>Machine learning QECC<a class="anchor-link" href="#Machine-learning-QECC"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is an architecture that I have in mind.</p>
+<p><figure>
+  
+    <img class="docimage" src="/blog/images/copied_from_nb/myimages/ecc_training/arch.svg" alt="Drawing">
+    
+    
+</figure>
+</p>
+<p>First, we embed a logical qubit into $n$ physical ones. I will do this in the simplest possible way $|\psi\rangle \to |\psi\rangle\otimes |0\rangle^{n-1}$, i.e. assuming that the first physical qubit is the logical state to be transmitted while other physical qubits are initialized in $|0\rangle$ states. The initial embedding is in fact irrelevant, because after that I allow for an arbitrary encoding transformation $U_{encoding}$. It is only required to be unitary. The encoding stage does the heavy lifting, and the encoding unitary is the main variable to be optimized. After that we add an error layer, which can consist of arbitrary single-qubit unitary errors. Then goes the decoding layer, which we will trust to recover the information about the logical qubit (it will also  be trained). I will assume that the decoding layer is also a unitary. At the final step, the physical qubit state must somehow be projected onto the single-qubit state which will be our final, received and corrected state.</p>
+<p>If you are familiar with quantum error correction, the assumption that decoding is a unitary operation and hence makes no explicit reference to syndrome measurements and things of that sort may look suspicious. We'll see that it works, and make some comments afterwards.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Design-choices">
+<a class="anchor" href="#Design-choices" aria-hidden="true"><span class="octicon octicon-link"></span></a>Design choices<a class="anchor-link" href="#Design-choices"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Projecting-the-final-state">
+<a class="anchor" href="#Projecting-the-final-state" aria-hidden="true"><span class="octicon octicon-link"></span></a>Projecting the final state<a class="anchor-link" href="#Projecting-the-final-state"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are still details to be filled in. One is to specify how to get a single-qubit logical state from the final state of the physical qubits. Similarly to the embedding step, I will assume that the relevant information is contained exclusively in the first physical qubit. Then, successful error correction implies that the first physical qubit is unentangled with the others after the decoding step and has the same state it had before the encoding.</p>
+<p>
+$$|\psi\rangle\otimes |0\rangle^{n-1} \to \text{Encoding+Error+Decoding} \to |\psi\rangle\otimes |e\rangle_{n-1}$$
+</p>
+<p>Note that the rest of the physical qubits will end up in different states $|e\rangle_{n-1}$ depending on the error that have been corrected. Requiring that the final state is $|\psi\rangle\otimes |0\rangle^{n-1}$ regardless of the error is too strong and can not be satisfied for any interesting set of errors.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dealing-with-continuum">
+<a class="anchor" href="#Dealing-with-continuum" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dealing with continuum<a class="anchor-link" href="#Dealing-with-continuum"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, how do we deal with the continuum of states and errors? I guess that a truly black-box approach would be to generate a large set of initial states and single-qubit errors and train the model using all this data. If successful, check on the test data to exclude overfitting. I'm sure that would work, but here I will take a shortcut and exploit the linearity of the whole construction. Denote by $U(E)$ the full unitary of the encoding+error+correction process, for some error $E$</p>
+<p>
+$$U(E)=U_{decoding}\,\, U_{error}(E) \,\, U_{encoding} \ .$$
+</p>
+<p>For a given initial state $|\psi\rangle=\alpha |0\rangle+\beta |1\rangle$ and a fixed error $E$, the final state can be reconstructed from the action on $|0\rangle$ and $|1\rangle$ states</p>
+<p>
+$$|\psi\rangle\otimes |0\rangle^{n-1}=\alpha\,\, U(E) |0\rangle\otimes|0\rangle^{n-1}+\beta\,\, U(E)|1\rangle\otimes|0\rangle^{n-1} \ .$$
+</p>
+<p>Similarly, if we can correct errors corresponding to $X, Y$ and $Z$ unitaries on a given qubit, we will be able to correct an arbitrary linear combination of them, which is unitary. Indeed, say we can correct both $X$ and $Y$ errors
+\begin{align*}
+|\psi\rangle\otimes |0\rangle^{n-1}\to U(X) \to |\psi\rangle\otimes |x\rangle_{n-1} \ ,\\
+|\psi\rangle\otimes |0\rangle^{n-1}\to U(Y) \to |\psi\rangle\otimes |y\rangle_{n-1} \ .
+\end{align*}
+Then their unitary linear combination will also be corrected in a sence that the state of the first physical qubit is the original encoded state
+\begin{align*}
+|\psi\rangle\otimes |0\rangle^{n-1}\to U(aX+bY) \to |\psi\rangle\otimes\left(a|x\rangle_{n-1}+b|y\rangle_{n-1}\right) \ .
+\end{align*}
+In fact, correcting $X,Y$ and $Z$ errors on any of the qubits is sufficient to correct their arbitrary linear combination, including non-unitary ones and those acting on different qubits. More on that later.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Implementation">
+<a class="anchor" href="#Implementation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementation<a class="anchor-link" href="#Implementation"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is a code that implements the model. I do no use any quantum framework and deal with unitary matrices directly. That requires making a few tensor products here and there, but nothing cumbersome. I include the code right below in order to make this notebook/post self-contained, but do not go into detailed explanations. Here are several technical highlights though.</p>
+<ul>
+<li>I use <a href="https://jax.readthedocs.io/en/latest/#">JAX</a> as a numerical optimization backend. This why all the <code>jnp</code>s instead of <code>np</code>s.</li>
+<li>I take a very low-key approach to optimization over unitary matrices, parametrizing them by Hermitian matrices $U=e^{i H}$. Basis in Hermitian matrices can be chosen to consist of $e_{ii}, e_{ij}+e_{ji}$ and $i(e_{ij}-e_{ji})$, where $e_{ij}$ is a matrix with all elements zero except one at position $ij$. Matrix exponentiation is an expensive procedure and to scale the code to more qubits a better parametrization of the unitary group is required, e.g. as done here <a href="https://github.com/LuchnikovI/QGOpt">QGOPT</a>.</li>
+<li>I choose the loss associated with an error correction process $U(E)$ in the following way. Let $|\Psi_0\rangle$ be the image of $|0\rangle$ and $|\Psi_1\rangle$ of $|1\rangle$
+
+$$|\Psi_0\rangle=U(E)|0\rangle\otimes |0\rangle^{n-1},\quad |\Psi_1\rangle=U(E)|1\rangle\otimes |0\rangle^{n-1}\ \ . $$
+
+The loss is
+
+$$L(E) = 2-L_Z-L_X, \qquad L_Z=\langle \Psi_0|Z_1|\Psi_0\rangle, \qquad L_X=\operatorname{Re} \langle \Psi_0|X_1|\Psi_1\rangle \ .$$
+
+The term $L_Z$ is maximal $L_Z=1$ when $|\Psi_0\rangle=|0\rangle \otimes |e\rangle_{n}$, i.e. when the $|0\rangle$ state of the first physical qubit is preserved by the error correction. If $|0\rangle$ is mapped to a mixed state or to a pure state different from $|0\rangle$ we have $L_Z&lt;1$. The term $L_X$ is maximal when the $|\Psi_1\rangle=X_1 |\Psi_0\rangle$. If $|0\rangle\otimes|0\rangle^{n-1}\to|0\rangle \otimes |e\rangle_{n}$, this  condition implies that $|1\rangle\otimes|0\rangle^{n-1} \to |1\rangle \otimes |e\rangle_{n}$. By linearity,  this is sufficient for an arbitray input state to be corrected when subject to this error.</li>
+<li>The total loss is the sum of individual losses over all $X, Y, Z$ errors acting on each qubit
+
+$$L(E)=\sum_{i=1}^{n}\left(L(X_i)+L(Y_i)+L(Z_i)\right) \ .$$
+
+However, we may wish to correct only a subset of errors, say only $X$ errors. Then include only those in the loss function.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Pauli matrices.</span>
+<span class="n">x_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="n">y_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">complex64</span><span class="p">)</span>
+
+<span class="n">z_mat</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">pauli</span> <span class="o">=</span> <span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">x_mat</span><span class="p">,</span> <span class="n">y_mat</span><span class="p">,</span> <span class="n">z_mat</span><span class="p">)</span>
+
+
+<span class="c1"># Parametrized unitary matrices.</span>
+<span class="k">class</span> <span class="nc">UnitaryLayer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="n">num_qubits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_params</span> <span class="o">=</span> <span class="mi">4</span><span class="o">**</span><span class="n">num_qubits</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">hermitian_basis</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">num_qubits</span>
+        <span class="n">diag_basis</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">complex64</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span>
+        <span class="n">off_diag_real_basis</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">complex64</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+        <span class="n">off_diag_im_basis</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">complex64</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">diag_basis</span><span class="o">+</span><span class="n">off_diag_real_basis</span><span class="o">+</span><span class="n">off_diag_im_basis</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">unitary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="n">generator</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hermitian_basis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">),</span> <span class="n">params</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">)))</span>
+        <span class="k">return</span> <span class="n">expm</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">generator</span><span class="p">)</span>
+    
+
+<span class="c1"># Matrices corresponding individual single-qubit errors.    </span>
+<span class="k">class</span> <span class="nc">ErrorLayer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">pauli</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="n">num_qubits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="n">errors</span>
+    
+    <span class="k">def</span> <span class="nf">unitary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="n">error_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">q</span> <span class="k">else</span> <span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">error_list</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">all_error_unitaries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">single_error_unitaries</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">unitary</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">))]</span>
+        <span class="n">id_error</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">id_error</span><span class="p">]</span><span class="o">+</span><span class="n">single_error_unitaries</span><span class="p">)</span>
+
+<span class="c1"># Model parameters as a namedtuple.    </span>
+<span class="n">ecc_params</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">'ECCparams'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'encoding_params'</span><span class="p">,</span> <span class="s1">'decoding_params'</span><span class="p">])</span>
+
+<span class="k">class</span> <span class="nc">ECCmodel</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="n">error_layer</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">=</span> <span class="n">num_qubits</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_layer</span> <span class="o">=</span> <span class="n">error_layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding_layer</span> <span class="o">=</span> <span class="n">UnitaryLayer</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoding_layer</span> <span class="o">=</span> <span class="n">UnitaryLayer</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">embed</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">):</span>
+        <span class="sd">"""Take |psi&gt; and output |psi&gt;|0,0,0, ...&gt; """</span>
+        <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">jnp</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    
+    
+    <span class="k">def</span> <span class="nf">final_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">encoding_unitary</span><span class="p">,</span> <span class="n">decoding_unitary</span><span class="p">,</span> <span class="n">error_unitary</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">decoding_unitary</span> <span class="o">@</span> <span class="n">error_unitary</span> <span class="o">@</span> <span class="n">encoding_unitary</span> <span class="o">@</span> <span class="n">initial_state</span>
+        <span class="k">return</span> <span class="n">s</span>
+    
+    <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">error_unitary</span><span class="p">):</span>
+        <span class="n">encoding_unitary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding_layer</span><span class="o">.</span><span class="n">unitary</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">encoding_params</span><span class="p">)</span>
+        <span class="n">decoding_unitary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoding_layer</span><span class="o">.</span><span class="n">unitary</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">decoding_params</span><span class="p">)</span>
+        
+        <span class="n">final_states</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">initial_state_1q</span> <span class="ow">in</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]:</span>
+            <span class="n">initial_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">initial_state_1q</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">jnp</span><span class="o">.</span><span class="n">complex64</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+            <span class="n">final_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_state</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">encoding_unitary</span><span class="p">,</span> <span class="n">decoding_unitary</span><span class="p">,</span> <span class="n">error_unitary</span><span class="p">)</span>            
+            <span class="n">final_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">final_state</span><span class="p">)</span>
+        
+        <span class="n">Psi_0</span><span class="p">,</span> <span class="n">Psi_1</span> <span class="o">=</span> <span class="n">final_states</span>
+        
+        <span class="n">X1</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="p">[</span><span class="n">x_mat</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">Z1</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="p">[</span><span class="n">z_mat</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="n">Z_avg</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">Psi_0</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">Z1</span> <span class="o">@</span> <span class="n">Psi_0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">X_off_diag</span> <span class="o">=</span> <span class="p">(</span><span class="n">Psi_0</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">X1</span> <span class="o">@</span> <span class="n">Psi_1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="o">-</span><span class="n">Z_avg</span><span class="o">-</span><span class="n">jnp</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">X_off_diag</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt_options</span><span class="o">=</span><span class="n">OptOptions</span><span class="p">(</span><span class="n">num_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">)):</span>
+
+        <span class="n">error_unitaries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_layer</span><span class="o">.</span><span class="n">all_error_unitaries</span><span class="p">()</span>
+        
+        <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+            <span class="n">losses</span> <span class="o">=</span> <span class="n">vmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">error_u</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">error_u</span><span class="p">))(</span><span class="n">error_unitaries</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">losses</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">error_unitaries</span><span class="p">)</span>
+        
+        <span class="n">initial_params</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">PRNGKey</span><span class="p">(</span><span class="n">opt_options</span><span class="o">.</span><span class="n">random_seed</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding_layer</span><span class="o">.</span><span class="n">num_params</span><span class="p">))</span>
+        <span class="n">initial_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">ecc_params</span><span class="p">(</span><span class="n">initial_params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">initial_params</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+        
+        <span class="c1"># `mynimize` is just my custom optimization routine with a JAX backend. </span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">mynimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">initial_params</span><span class="p">,</span> <span class="n">opt_options</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">best_result</span><span class="o">.</span><span class="n">best_params</span>
+        <span class="k">return</span> <span class="n">results</span><span class="o">.</span><span class="n">best_result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>WARNING:absl:No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Quantum-repetition-code">
+<a class="anchor" href="#Quantum-repetition-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quantum repetition code<a class="anchor-link" href="#Quantum-repetition-code"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let us put the model to use. It is well known that with three physical qubits one can protect a logical qubit from $X$ erorrs. This is a generalization of the classical repetition code. Let's see if our model can do that.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">error_layer</span> <span class="o">=</span> <span class="n">ErrorLayer</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="p">[</span><span class="n">x_mat</span><span class="p">])</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ECCmodel</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">error_layer</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">OptOptions</span><span class="p">(</span><span class="n">num_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">result</span><span class="o">.</span><span class="n">plot_loss_history</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Loss history'</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 14.9 s, sys: 58.4 ms, total: 15 s
+Wall time: 15 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0.5, 1.0, 'Loss history')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OK, the optimization is clearly successfull. Of course there is always a chance that there are mistakes in the code or in the definition of the loss function itself. I will give a more thorough verification for the 5-qubit code later. By modifying and re-running the cell above you can also do some simple sanity checks -- see if the same results can be achieved with fewer qubits (<code>num_qubits</code>$\to$2) or if more errors can be corrected (<code>errors</code>$\to$<code>[x_mat, y_mat]</code>). Neither works, of course.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Standard-description-of-the-quantum-repetition-code">
+<a class="anchor" href="#Standard-description-of-the-quantum-repetition-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Standard description of the quantum repetition code<a class="anchor-link" href="#Standard-description-of-the-quantum-repetition-code"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have seen that a black-box approach works it is instructive to revisit the usual construction of the error correcting codes. Here is how the quantum repetition code, which is able to correct $X$ errors, works. Encoding is done as follows</p>
+<p>
+$$|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\to \alpha |000\rangle+\beta|111\rangle \ .$$
+</p>
+<p>This does not violate the no-cloning theorem because the new state is not $|\psi\rangle\otimes|\psi\rangle\otimes|\psi\rangle$. Coefficients $\alpha$ and $\beta$, which define the state, are not copied. This encoding can be done with the following circuit</p>
+<p><figure>
+  
+    <img class="docimage" src="/blog/images/copied_from_nb/myimages/ecc_training/ghz.png" alt="Drawing">
+    
+    
+</figure>
+</p>
+<p>Now say there was an $X$ error acting on the first qubit during the transmission
+
+$$\alpha |000\rangle+\beta|111\rangle\to X_1 \to \alpha |100\rangle+\beta|011\rangle$$
+
+Can we detect an correct it? The problem is that measuring any of the qubits individually destroys their coherent superposition. A workaround is to make collective measurements $Z_1Z_2$ and $Z_1Z_3$, known as parity checks. Both terms in the corrupted decomposition have the same eigenvalues and hence coherence is preserved. Parity checks allow to identify qubit 1 as corrupted, and correct the error by applying $X_1$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Can-we-do-without-a-measurment?">
+<a class="anchor" href="#Can-we-do-without-a-measurment?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can we do without a measurment?<a class="anchor-link" href="#Can-we-do-without-a-measurment?"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Measurements and post-selected correction operators were not part of our model, where the decoder is unitary. Is there something wrong with our approach, or measurements are not strictly necessary? I do think they aren't, but you would not be able to tell from most of the introductory literature. To illustrate the situation for the repetition code, I came up with the following unitary circuit, which can correct/decode any single $X$ error in the repetition code</p>
+<p><figure>
+  
+    <img class="docimage" src="/blog/images/copied_from_nb/myimages/ecc_training/dec.png" alt="Drawing">
+    
+    
+</figure>
+</p>
+<p>It is straightforward to check that it transforms vectors with single $X$ errors as follows.
+\begin{align*}
+I_{}:\quad |000\rangle\to |000\rangle,\quad |111\rangle\to |100\rangle\\
+X_1:\quad|100\rangle\to |011\rangle,\quad |011\rangle\to |111\rangle\\
+X_2:\quad|010\rangle\to |101\rangle,\quad |010\rangle\to |110\rangle\\
+X_3:\quad|001\rangle\to |001\rangle,\quad |110\rangle\to |101\rangle\\
+\end{align*}
+Important things to note here are that the first qubit value becomes the majority vote, while two other qubit registers agree within the same line. I do not claim that our numerical optimization above discovered exactly this circuit and/or the repetition encoding, but it must be something equivalent.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="5-qubit-code">
+<a class="anchor" href="#5-qubit-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>5 qubit code<a class="anchor-link" href="#5-qubit-code"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The smallest amount of physical qubits that can correct against arbitrary single-qubit errors is known to be 5. Let me sketch a proof. Please! No, it's not needed to make my points, I just like it a lot. OK? Great!</p>
+<p>If a code can correct an arbitrary single-qubit error, it can also recover from the loss of two qubits.
+If we'd have an ECC with just four qubits, we could separate them into two groups 4=2+2. Each group could recover the encoded state, which produces two copies of it. This violates the no-cloning theorem! Lowering the number of qubits does not help, of course.</p>
+<p>Good, let us try to train the model with 5 physical qubits and the error operators that span all single-qubit errors.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">error_layer</span> <span class="o">=</span> <span class="n">ErrorLayer</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="p">[</span><span class="n">x_mat</span><span class="p">,</span> <span class="n">y_mat</span><span class="p">,</span> <span class="n">z_mat</span><span class="p">])</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ECCmodel</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">error_layer</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">OptOptions</span><span class="p">(</span><span class="n">num_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="n">result</span><span class="o">.</span><span class="n">plot_loss_history</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Iteration'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Loss history'</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2min 23s, sys: 826 ms, total: 2min 23s
+Wall time: 2min 27s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0.5, 1.0, 'Loss history')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The loss function indicates that our model learns a 5-qubit ECC. You may wish to check that it does not work with fewer qubits, e.g. <code>num_qubits</code>$\to$4. Another empirical observation is that if the model is trained on $X$ and $Z$ errors only, it will be able to correct $Y$ errors as well (passes verification below). This does not seem to be guarantied in general, as <a href="https://quantumcomputing.stackexchange.com/questions/26846/if-a-quantum-error-correcting-code-corrects-both-x-and-z-errors-will-it-be">counter-examples</a> exist.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Verification">
+<a class="anchor" href="#Verification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Verification<a class="anchor-link" href="#Verification"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To convince you and myself that the loss plot above does reflect learning a genuine ECC here I will carry out an independent check. First let me note that the way errors enter in the model we trained is not completely general. The most general evolution of the initial state under an interaction with an environment is described by a quantum channel</p>
+<p>
+$$|\psi\rangle\to \rho = \operatorname{Tr}_{n-1}\sum {M_a}|\Psi\rangle\langle\Psi|M_a^\dagger,\qquad |\Psi\rangle=|\psi\rangle\otimes |0\rangle^{n-1} .$$
+</p>
+<p>Here $\rho$ is the final density matrix of the first physical qubit, which by our assumption corresponds to the logical qubit after error correction process. The partial trace is taken with respect to the other physical qubits. Matrices $M_a$ are called Kraus operators and could be thought of as a combination
+
+$$M_a = U_{decoding} E_a U_{encoding} \ .$$
+
+We trained our model on cases where the error part $E_a$ in each Kraus operator $M_a$ is a single Pauli operator acting on some qubit, e.g. $E_a=X_2$. A general single-qubit error corresponds to each $E_a$ being a linear combination of single-qubit unitaries
+
+$$E_a=\sum_{i=1}^{n} c_{ai} U_i.$$
+
+For example, one of them could be something like $E_1 = c_{11}(0.13 X_1+2.7 Y_1)+c_{12} Z_2 + c_{13} (Y_1-0.55 Z_1)$. Kraus operators are not required to be unitary, but only to satisfy the completeness relation $\sum M_a^\dagger M_a=1$. Our model was trained so that $M_a |\Psi\rangle=|\psi\rangle \otimes |\text{some state}\rangle$ when $M_a$ only contains Pauli errors acting on a single qubit. However, this equation extends to arbitrary single-qubit errors by linearity.</p>
+<p>To perform an independent check I generate a bunch of initial states and generic single-qubit errors $E_a$. I will restrict to channels with single (non-normalized) Kraus operators for simplicity. If (normalized) density matrices
+
+$$ \rho_a=\frac{M_a|\Psi\rangle\langle\Psi|M_a^\dagger}{\langle \Psi|M_a^\dagger M_a|\Psi\rangle} $$
+
+reproduce the correlators of the original state for any $M_a$, they surely do for any sum over $M_a$. Thus, I will check that</p>
+<p>
+$$\langle\psi|X|\psi\rangle=\operatorname{tr}\rho_a X,\quad \langle\psi|Y|\psi\rangle=\operatorname{tr}\rho_a Y,\quad \langle\psi|Z|\psi\rangle=\operatorname{tr}\rho_a Z .$$
+</p>
+<p>Essentially, we'll do the full state tomography of the first physical qubit. This of course should be equivalent to the loss function we used during training, but I think reformulation is useful as an additional consistency check.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span><span class="p">,</span> <span class="o">*</span><span class="n">keys</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">PRNGKey</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Sample sizes.</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">num_qubits</span>
+<span class="n">num_initial_states</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">num_errors</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Initial states, drawn at random and normalized.</span>
+
+<span class="n">initial_states</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_initial_states</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1"># 2x real components</span>
+<span class="n">initial_states</span> <span class="o">=</span> <span class="n">initial_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">initial_states</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># combine into 1x complext components</span>
+
+<span class="k">def</span> <span class="nf">norm_state</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">norms</span> <span class="o">=</span> <span class="p">[</span><span class="n">norm_state</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">initial_states</span><span class="p">]</span>
+<span class="n">initial_states</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">/</span><span class="n">norm_state</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">initial_states</span><span class="p">]</span>
+
+<span class="c1">### Defining random linear combinations of single-qubits errors is a bit cumbersome, but purely technical.</span>
+
+<span class="c1"># Random single-qubit errors.</span>
+<span class="n">random_1q_unitaries</span> <span class="o">=</span> <span class="n">unitary_group</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_errors</span><span class="o">*</span><span class="n">num_qubits</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">num_errors</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">random_coefficients</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">num_errors</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">error_at_position</span><span class="p">(</span><span class="n">error_u</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">):</span>
+    <span class="sd">"""Takes U and returns tensor product 1 x 1 x ... U x 1 ... x 1 with U at position i."""</span>
+    <span class="n">ops</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span><span class="o">*</span><span class="n">num_qubits</span>
+    <span class="n">ops</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">error_u</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">kron</span><span class="p">,</span> <span class="n">ops</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">make_error_operator</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">):</span>   
+    <span class="sd">"""Takes a list of 1q errors and puts error 1 on qubit 1, error 2 on qubit 2, etc, then takes their liner combination."""</span>
+    <span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+    <span class="n">full_errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">error_at_position</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">errors</span><span class="p">)]</span>
+    
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">u</span><span class="o">*</span><span class="n">c</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">full_errors</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">)])</span>
+
+<span class="n">errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_error_operator</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">)</span> <span class="k">for</span> <span class="n">errors</span><span class="p">,</span> <span class="n">coeffs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">random_1q_unitaries</span><span class="p">,</span> <span class="n">random_coefficients</span><span class="p">)]</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So finally we have a bunch of initial states and general (non-unitary) single-qubit error operators. Let's see directly the the model is able to correct them.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span>
+
+<span class="n">u_encoding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encoding_layer</span><span class="o">.</span><span class="n">unitary</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">encoding_params</span><span class="p">)</span>
+<span class="n">u_decoding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">decoding_layer</span><span class="o">.</span><span class="n">unitary</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">decoding_params</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">density_matrix</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">"""Density matrix of the first qubit."""</span>
+    <span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">num_qubits</span><span class="p">)</span>
+    <span class="n">axes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">))</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">jnp</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">axes</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">rho</span>
+    
+
+<span class="k">def</span> <span class="nf">tomography_loss</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">error_u</span><span class="p">):</span>
+    <span class="n">final_state</span> <span class="o">=</span> <span class="n">u_decoding</span> <span class="o">@</span> <span class="n">error_u</span> <span class="o">@</span> <span class="n">u_encoding</span> <span class="o">@</span> <span class="n">ECCmodel</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">)</span>
+    <span class="c1"># For non-unitary errors the state should be normilized.</span>
+    <span class="n">final_state</span> <span class="o">=</span> <span class="n">final_state</span><span class="o">/</span><span class="n">jnp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">jnp</span><span class="o">.</span><span class="n">real</span><span class="p">((</span><span class="n">final_state</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">*</span><span class="n">final_state</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+    <span class="n">final_rho</span> <span class="o">=</span> <span class="n">density_matrix</span><span class="p">(</span><span class="n">final_state</span><span class="p">)</span>
+
+    <span class="n">pauli_averages_initial</span> <span class="o">=</span> <span class="p">[(</span><span class="n">initial_state</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span> <span class="o">@</span> <span class="n">p</span> <span class="o">@</span> <span class="n">initial_state</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x_mat</span><span class="p">,</span> <span class="n">y_mat</span><span class="p">,</span> <span class="n">z_mat</span><span class="p">]]</span>
+    <span class="n">pauli_averages_final</span> <span class="o">=</span> <span class="p">[</span><span class="n">jnp</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">final_rho</span> <span class="o">@</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x_mat</span><span class="p">,</span> <span class="n">y_mat</span><span class="p">,</span> <span class="n">z_mat</span><span class="p">]]</span>
+    
+    <span class="n">loss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([(</span><span class="n">avg_i</span> <span class="o">-</span> <span class="n">avg_f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">avg_i</span><span class="p">,</span> <span class="n">avg_f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pauli_averages_initial</span><span class="p">,</span> <span class="n">pauli_averages_final</span><span class="p">)])</span>
+
+    <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+
+
+<span class="n">losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">tomography_loss</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">initial_states</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">errors</span><span class="p">]</span>
+<span class="n">avg_loss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">losses</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">losses</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Average loss from tomography: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">avg_loss</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Average loss from tomography: 0.11509232223033905
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OK, the average tomographic loss is basically within the machine precision, which makes a strong case for the fact our simple model did learn a genuine ECC code on 5 qubits. This wraps up my experiment!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     tex2jax: {
+       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+       processEscapes: true
+     }
+   });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="idnm/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/qml/qec/2022/06/12/Machine-learning-error-correction-codes.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My take on various quantum concepts and brief reviews of latest research papers</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
