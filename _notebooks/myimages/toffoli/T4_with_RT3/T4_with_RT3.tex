@@ -1,0 +1,15 @@
+\documentclass[border=2px]{standalone}
+
+\usepackage[braket, qm]{qcircuit}
+\usepackage{graphicx}
+
+\begin{document}
+\scalebox{1.0}{
+\Qcircuit @C=1.0em @R=0.8em @!R {
+	 	\nghost{{q}_{0} :  } & \lstick{{q}_{0} :  } & \ctrl{1} & \qw & \ctrl{1} & \qw & \qw\\
+	 	\nghost{{q}_{1} :  } & \lstick{{q}_{1} :  } & \ctrl{1} & \qw & \ctrl{1} & \qw & \qw\\
+	 	\nghost{{q}_{2} :  } & \lstick{|0\rangle :  } & \targ & \ctrl{1} & \targ & \qw & \qw\\
+	 	\nghost{{q}_{2} :  } & \lstick{{q}_{2} :  } & \qw & \ctrl{1} & \qw & \qw & \qw\\
+	 	\nghost{{q}_{3} :  } & \lstick{{q}_{3} :  } & \qw & \targ & \qw & \qw & \qw \gategroup{1}{3}{3}{3}{0.7em}{--} \gategroup{1}{5}{3}{5}{0.7em}{--}
+}}
+\end{document}

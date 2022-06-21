@@ -1,0 +1,30 @@
+\documentclass[border=2px]{standalone}
+
+\usepackage[braket, qm]{qcircuit}
+\usepackage{graphicx}
+
+\begin{document}
+\Qcircuit @C=1.0em @R=0.8em @!R {
+	 	\nghost{{q}_{0} :  } & \lstick{c_4 :  }& \qw {/} & \ctrl{1} & \qw & \qw & \qw & \ctrl{1} & \qw & \qw\\
+	 	\nghost{{q}_{1} :  } & \lstick{|0\rangle :  } & \qw & \targ & \ctrl{2} & \qw & \ctrl{2} & \targ & \qw & \qw\\
+	 	\nghost{{q}_{2} :  } & \lstick{c_4 :  }& \qw {/}& \ctrl{1} & \qw & \qw & \qw & \ctrl{1} & \qw & \qw\\
+	 	\nghost{{q}_{3} :  } & \lstick{|0\rangle :  }& \qw & \targ & \ctrl{2} & \qw & \ctrl{2} & \targ & \qw & \qw\\
+	 	\nghost{{q}_{4} :  } & \lstick{c_3 :  }& \qw {/} & \ctrl{1} & \qw & \qw & \qw & \ctrl{1} & \qw & \qw\\
+	 	\nghost{{q}_{5} :  } & \lstick{|0\rangle :  }& \qw & \targ & \ctrl{3} & \qw & \ctrl{3} & \targ & \qw & \qw\\
+	 	\nghost{{q}_{6} :  } & \lstick{c_3 :  }& \qw {/} & \ctrl{1} & \qw & \qw & \qw & \ctrl{1} & \qw & \qw\\
+	 	\nghost{{q}_{7} :  } & \lstick{|0\rangle :  }& \qw & \targ & \qw & \ctrl{1} & \qw & \targ & \qw & \qw\\
+	 	\nghost{{q}_{8} :  } & \lstick{|0\rangle :  }& \qw & \qw & \targ & \ctrl{1} & \targ & \qw & \qw & \qw\\
+	 	\nghost{{q}_{9} :  } & \lstick{trgt :  }& \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw
+ 		\gategroup{1}{4}{2}{4}{0.7em}{--}
+ 		\gategroup{3}{4}{4}{4}{0.7em}{--}
+ 		\gategroup{5}{4}{6}{4}{0.7em}{--}
+ 		\gategroup{7}{4}{8}{4}{0.7em}{--}
+ 		\gategroup{2}{5}{9}{5}{0.7em}{--}
+ 		\gategroup{2}{7}{9}{7}{0.7em}{--}
+ 		\gategroup{1}{8}{2}{8}{0.7em}{--}
+ 		\gategroup{1}{4}{2}{4}{0.7em}{--}
+ 		\gategroup{3}{8}{4}{8}{0.7em}{--}
+ 		\gategroup{5}{8}{6}{8}{0.7em}{--}
+ 		\gategroup{7}{8}{8}{8}{0.7em}{--}
+ 		}
+\end{document}
