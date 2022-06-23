@@ -106,7 +106,11 @@ layout: notebook
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+
+<span class="c1"># Note, if you draw this interactively and have an error here (happens in Colab), redefine the global variable below.</span>
+<span class="c1"># output = &#39;mpl&#39;</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -166,7 +170,7 @@ layout: notebook
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">ccx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -226,7 +230,7 @@ layout: notebook
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">mct</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -288,7 +292,7 @@ layout: notebook
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">ccx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -416,7 +420,7 @@ layout: notebook
 <span class="n">RT3dg</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;RT3dg&#39;</span>
 
 <span class="c1"># Draw</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -557,7 +561,7 @@ $$\Big[\Big(e^{\phi_0}|00\rangle\langle00|+e^{\phi_1}|01\rangle\langle01|+e^{\ph
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;is relative:&#39;</span><span class="p">,</span> <span class="n">is_relative</span><span class="p">(</span><span class="n">u_SRT3</span><span class="p">,</span> <span class="n">u_T3</span><span class="p">))</span>
 
 <span class="c1"># Draw</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -653,7 +657,7 @@ $$\Big[\Big(e^{\phi_0}|00\rangle\langle00|+e^{\phi_1}|01\rangle\langle01|+e^{\ph
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;is relative:&#39;</span><span class="p">,</span> <span class="n">is_relative</span><span class="p">(</span><span class="n">u_RT4</span><span class="p">,</span> <span class="n">u_T4</span><span class="p">))</span>
 
 <span class="c1"># Draw</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -748,7 +752,7 @@ $$\Big[\Big(e^{\phi_0}|00\rangle\langle00|+e^{\phi_1}|01\rangle\langle01|+e^{\ph
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;is relative:&#39;</span><span class="p">,</span> <span class="n">is_relative</span><span class="p">(</span><span class="n">u_RT5</span><span class="p">,</span> <span class="n">u_T5</span><span class="p">))</span>
 
 <span class="c1"># Draw</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -839,7 +843,7 @@ $$\Big[\Big(e^{\phi_0}|00\rangle\langle00|+e^{\phi_1}|01\rangle\langle01|+e^{\ph
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;is relative:&#39;</span><span class="p">,</span> <span class="n">is_relative</span><span class="p">(</span><span class="n">u_RT5</span><span class="p">,</span> <span class="n">u_T5</span><span class="p">))</span>
 
 <span class="c1"># Draw</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1050,10 +1054,155 @@ CX depth: 36
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It is of course possible to use other ways of splitting the control qubits into groups and/or using the ancilla qubits differently. I'm really curious to look at solutions submitted by other participants, including the best one due to Soshun Naito. Looking forward to Classiq announcement!</p>
+<p><strong><em>Update</em></strong>: As noted by <a href="https://www.linkedin.com/in/gramolin/">Alexander Gramolin</a>, this decomposition can be improved by using an upgraded version of the Toffoli 3 gate sitting in the middle of the circuit. My implementation above uses standard <code>qiskit</code> decomposition with depth 11. A better option is to use depth-8 Toffoli gate from <a href="https://arxiv.org/abs/1206.0758">this paper</a> (be sure Dmitri Maslov if one of the authors:):</p>
 
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Build circuit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">tdg</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">tdg</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">tdg</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">tdg</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Store to gate</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">to_instruction</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;T3&#39;</span><span class="p">)</span>
+
+<span class="c1"># Check that it is indeed the relative phase Toffoli 3 gate</span>
+<span class="n">u_T3</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="n">qc_T3_standard</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc_T3_standard</span><span class="o">.</span><span class="n">ccx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">u_T3_standard</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc_T3_standard</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;is T3:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">u_T3</span><span class="p">,</span> <span class="n">u_T3_standard</span><span class="p">))</span>
+
+<span class="c1"># Draw</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+</p>
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>is T3: True
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This reduces $CX$ depth by 1 and total depth by 4!</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c41</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;c41&#39;</span><span class="p">)</span>
+<span class="n">c42</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;c42&#39;</span><span class="p">)</span>
+<span class="n">c31</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;c31&#39;</span><span class="p">)</span>
+<span class="n">c32</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;c32&#39;</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;a</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;trgt&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">c41</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">c42</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c31</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">c32</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT5</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT5</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT4</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">)))</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT4</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">18</span><span class="p">)))</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT4</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">])</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T3</span><span class="p">,</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">])</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT4dg</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">])</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT5dg</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)))</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT5dg</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT4dg</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">)))</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RT4dg</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">18</span><span class="p">)))</span>
+
+<span class="n">qc_final</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">basis_gates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cx&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total depth:&#39;</span><span class="p">,</span> <span class="n">qc_final</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CX depth:&#39;</span><span class="p">,</span> <span class="n">qc_final</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span> <span class="n">gate</span><span class="p">:</span> <span class="n">gate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;cx&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+</p>
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>total depth: 66
+CX depth: 35
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 </div>
  
 
