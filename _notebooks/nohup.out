@@ -1,0 +1,178 @@
+/usr/lib/python3/dist-packages/requests/__init__.py:89: RequestsDependencyWarning: urllib3 (1.26.9) or chardet (4.0.0) doesn't match a supported version!
+  warnings.warn("urllib3 ({}) or chardet ({}) doesn't match a supported "
+[I 2022-11-15 10:47:02.545 ServerApp] jupyterlab | extension was successfully linked.
+[I 2022-11-15 10:47:02.838 ServerApp] jupyter_nbextensions_configurator | extension was found and enabled by nbclassic. Consider moving the extension to Jupyter Server's extension paths.
+[I 2022-11-15 10:47:02.838 ServerApp] jupyter_nbextensions_configurator | extension was successfully linked.
+[I 2022-11-15 10:47:02.881 ServerApp] ipyparallel.nbextension | extension was found and enabled by nbclassic. Consider moving the extension to Jupyter Server's extension paths.
+[I 2022-11-15 10:47:02.882 ServerApp] ipyparallel.nbextension | extension was successfully linked.
+[I 2022-11-15 10:47:02.882 ServerApp] nbclassic | extension was successfully linked.
+[I 2022-11-15 10:47:02.921 ServerApp] nbclassic | extension was successfully loaded.
+[I 2022-11-15 10:47:02.923 ServerApp] Loading IPython parallel extension
+[I 2022-11-15 10:47:02.924 ServerApp] ipyparallel.nbextension | extension was successfully loaded.
+[I 2022-11-15 10:47:02.925 ServerApp] [jupyter_nbextensions_configurator] enabled 0.4.1
+[I 2022-11-15 10:47:02.925 ServerApp] jupyter_nbextensions_configurator | extension was successfully loaded.
+[I 2022-11-15 10:47:02.927 LabApp] JupyterLab extension loaded from /home/idnm/.local/lib/python3.8/site-packages/jupyterlab
+[I 2022-11-15 10:47:02.927 LabApp] JupyterLab application directory is /home/idnm/.local/share/jupyter/lab
+[I 2022-11-15 10:47:02.932 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2022-11-15 10:47:02.933 ServerApp] Serving notebooks from local directory: /home/idnm/Dropbox/hep/Sheets/Quantum Computing/blog/_notebooks
+[I 2022-11-15 10:47:02.933 ServerApp] Jupyter Server 1.8.0 is running at:
+[I 2022-11-15 10:47:02.933 ServerApp] http://localhost:8888/lab?token=6bdbd3fb08bf834d690351efb0094c0f792fe6c4bad2a708
+[I 2022-11-15 10:47:02.933 ServerApp]     http://127.0.0.1:8888/lab?token=6bdbd3fb08bf834d690351efb0094c0f792fe6c4bad2a708
+[I 2022-11-15 10:47:02.933 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2022-11-15 10:47:02.959 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///home/idnm/.local/share/jupyter/runtime/jpserver-51410-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/lab?token=6bdbd3fb08bf834d690351efb0094c0f792fe6c4bad2a708
+        http://127.0.0.1:8888/lab?token=6bdbd3fb08bf834d690351efb0094c0f792fe6c4bad2a708
+[I 2022-11-15 10:47:08.102 LabApp] Build is up to date
+[W 2022-11-15 10:47:08.404 ServerApp] 404 GET /spellchecker/language_manager?1668498427661 (127.0.0.1) 25.02ms referer=http://localhost:8888/lab
+[W 2022-11-15 10:47:09.044 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.058 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.085 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.103 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.187 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.198 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.260 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.296 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.305 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.322 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.418 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.441 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.473 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.511 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.597 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.682 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.687 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.713 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.872 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:09.899 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:10.020 ServerApp] 404 GET /api/contents/slow_waves_new.ipynb?content=0&1668498430006 (127.0.0.1): No such file or directory: slow_waves_new.ipynb
+[W 2022-11-15 10:47:10.021 ServerApp] No such file or directory: slow_waves_new.ipynb
+[W 2022-11-15 10:47:10.022 ServerApp] 404 GET /api/contents/slow_waves_new.ipynb?content=0&1668498430006 (127.0.0.1) 3.24ms referer=http://localhost:8888/lab
+[W 2022-11-15 10:47:10.025 ServerApp] 404 GET /api/contents/slow_waves_conjecture.ipynb?content=0&1668498430008 (127.0.0.1): No such file or directory: slow_waves_conjecture.ipynb
+[W 2022-11-15 10:47:10.027 ServerApp] No such file or directory: slow_waves_conjecture.ipynb
+[W 2022-11-15 10:47:10.028 ServerApp] 404 GET /api/contents/slow_waves_conjecture.ipynb?content=0&1668498430008 (127.0.0.1) 4.72ms referer=http://localhost:8888/lab
+[W 2022-11-15 10:47:11.041 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.085 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.241 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.256 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.419 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.532 ServerApp] Config option `template_path` not recognized by `ExporterCollapsibleHeadings`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.559 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.597 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.633 ServerApp] Config option `template_path` not recognized by `TocExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.646 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.668 ServerApp] Config option `template_path` not recognized by `LenvsHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.721 ServerApp] Config option `template_path` not recognized by `LenvsTocHTMLExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.738 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:11.801 ServerApp] Config option `template_path` not recognized by `LenvsLatexExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:12.105 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[W 2022-11-15 10:47:12.175 ServerApp] Config option `template_path` not recognized by `LenvsSlidesExporter`.  Did you mean one of: `extra_template_paths, template_name, template_paths`?
+[I 2022-11-15 10:47:26.942 ServerApp] Kernel started: ad130918-be59-42bf-8208-346b61c641be
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.control
+[IPKernelApp] WARNING | No such comm: bc1a5f3b-3e74-473c-b55e-93145efa21fd
+[I 2022-11-15 10:49:26.549 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 10:51:26.667 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 10:53:26.802 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 10:55:26.992 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 10:57:27.117 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 10:59:27.230 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:01:27.351 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:03:27.482 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[W 2022-11-15 11:04:19.413 ServerApp] 404 GET /static/notebook/components/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf (127.0.0.1) 2.05ms referer=http://localhost:8888/lab/tree/2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:05:27.607 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:07:27.727 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:09:27.875 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:11:28.009 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:13:28.123 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:15:28.253 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:17:28.392 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:19:28.514 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:23:28.642 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:25:28.772 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:27:28.938 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:29:29.067 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:35:29.193 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:41:29.313 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:43:29.472 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:45:29.624 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 11:47:29.760 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:25:30.491 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:27:30.658 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:29:30.790 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:31:31.264 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:33:31.600 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:35:31.730 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:37:31.879 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:39:32.277 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:41:32.417 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:43:32.590 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:45:33.016 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:47:33.144 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:49:33.280 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:51:33.434 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:55:33.595 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 14:59:33.747 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:01:33.888 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:03:34.064 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:05:34.249 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:07:34.396 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:09:34.535 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:11:34.678 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:13:34.854 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:15:34.978 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:17:35.104 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:19:35.241 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:21:35.316 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:23:35.396 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:25:36.248 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:27:36.329 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:29:36.433 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:31:36.555 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:33:36.658 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:35:36.736 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:37:36.796 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:39:36.864 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:41:36.926 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:43:36.984 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:45:37.037 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:47:37.113 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:49:37.190 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:51:37.286 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:53:37.332 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:55:37.424 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:57:37.480 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 15:59:37.552 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:01:37.632 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:03:37.731 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:05:37.834 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:07:37.926 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:09:37.988 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:15:38.066 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:29:38.170 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:31:38.249 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:33:38.319 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:47:29.656 ServerApp] Kernel started: 2b68659b-ad95-4554-a0fc-f10c4aac7b8e
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.control
+[IPKernelApp] WARNING | No such comm: addbffac-c627-42b8-bc49-f4d11748e5b8
+[I 2022-11-15 16:47:38.445 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:49:29.253 ServerApp] Saving file at /2022-06-21-Classiq Toffoli.ipynb
+[I 2022-11-15 16:49:38.532 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:51:38.613 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:53:38.671 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:55:38.744 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:57:38.824 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 16:59:38.905 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:01:38.974 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:03:39.065 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:05:39.135 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:07:39.210 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:09:39.291 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:11:39.452 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:13:39.533 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:15:39.610 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:17:39.690 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:19:39.749 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
+[I 2022-11-15 17:21:01.444 ServerApp] Saving file at /2022-11-15-Qutrit.ipynb
