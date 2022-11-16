@@ -38,7 +38,11 @@ baseurl: "/blog" # the subpath of your site, e.g. "/blog".
 
 # Github and twitter are optional:
 minima:
-  social_links:
+    social_links:
+    - { platform: rss, user_url: "/feed.xml" }
+    - { platform: github, user_url: "https://github.com/idnm/" }
+    - { platform: linkedin, user_url: "https://www.linkedin.com/in/nikita-nemkov/" }
+  
   
     twitter: 
     github: 

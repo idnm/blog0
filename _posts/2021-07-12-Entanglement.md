@@ -100,7 +100,7 @@ the state $\frac1{\sqrt{2}}\Big(|\uparrow\rangle-|\downarrow\rangle\Big)\Big(\up
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To my knowledge, one can only measure in the computational basis in <code>qiskit</code>, i.e. only along $\bf z$ axis in our terminology. To measure a spin along some axis $\bf n$ we can instead rotate the spin itself, and then measure along $\bf z$ axis. Mathematically, if ${\bf n} = R^{-1} {\bf z}$ for some rotation $R$ then $\langle \uparrow_{\bf z}|P({\bf n})| \uparrow_{{\bf z}}\rangle=\langle \uparrow_{R{\bf z}}|P({\bf z})| \uparrow_{R{\bf z}}\rangle$.</p>
+<p>To my knowledge, one can only measure in the computational basis in <code>qiskit</code>, i.e. only along $\bf z$ axis in our terminology. To measure a spin along some axis $\bf n$ we can instead rotate the spin itself, and then measure along $\bf z$ axis. Mathematically, if ${\bf n} = R^{-1} {\bf z}$ for some rotation $R$ then $\langle \uparrow_{\bf z}|P({\bf n})| \uparrow_{\bf z}\rangle=\langle \uparrow_{R{\bf z}}|P({\bf z})| \uparrow_{R{\bf z}}\rangle$.</p>
 
 </div>
 </div>
@@ -378,4 +378,8 @@ which, as you see, is weaker by a factor $\sqrt{2}$, so the correlations themsel
 </div>
 </div>
  
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script>
 
